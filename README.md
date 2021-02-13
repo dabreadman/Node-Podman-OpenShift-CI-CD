@@ -32,5 +32,5 @@ Develop a **persistent application** (in a language of your choice) that consist
 -Caddy
 
 ## Author
--@dabreadman, Yi Xiang Tan, 3rd year computer science.
--@neilshevlin, Neil Shevlin, 2nd year computer science and business. 
+-[Dabreadman](https://github.com/dabreadman), 3rd year computer science.  
+-[Neil Shevlin](https://github.com/neilshevlin), 2nd year computer science and business. 
