@@ -38,4 +38,5 @@ Develop a **persistent application** (in a language of your choice) that consist
 ## Author
 -[Cormac Madden](https://github.com/cormacmadden), 3rd year computer science and business.  
 -[Dabreadman](https://github.com/dabreadman), 3rd year computer science.  
--[Neil Shevlin](https://github.com/neilshevlin), 2nd year computer science and business. 
+-[Neil Shevlin](https://github.com/neilshevlin), 2nd year computer science and business.  
+-[Prathamesh Sai](https://github.com/saisankp), 2nd year computer science.  
