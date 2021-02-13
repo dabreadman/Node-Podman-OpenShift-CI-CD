@@ -31,5 +31,6 @@ Develop a **persistent application** (in a language of your choice) that consist
 -Nginx
 -Caddy
 
-## Team
--Neil Shevlin, 2nd year computer science and business. 
+## Author
+-@dabreadman, Yi Xiang Tan, 3rd year computer science.
+-@neilshevlin, Neil Shevlin, 2nd year computer science and business. 
