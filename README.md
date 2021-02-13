@@ -34,3 +34,4 @@ Develop a **persistent application** (in a language of your choice) that consist
 ## Author
 -@dabreadman, Yi Xiang Tan, 3rd year computer science.
 -@neilshevlin, Neil Shevlin, 2nd year computer science and business. 
+-@cormacmadden, Cormac Madden, 3nd year computer science and business. 
