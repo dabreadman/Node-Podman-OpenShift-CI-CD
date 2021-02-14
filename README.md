@@ -36,7 +36,8 @@ Develop a **persistent application** (in a language of your choice) that consist
 -[Docker OpenShift](https://github.com/actions/starter-workflows/blob/c59b62dee0eae1f9f368b7011cf05c2fc42cf084/ci/openshift.yml)
 
 ## Author
--[Cormac Madden](https://github.com/cormacmadden), 3rd year computer science and business.  
+-[Cormac Madden](https://github.com/cormacmadden), 3rd year computer science and business.
 -[Dabreadman](https://github.com/dabreadman), 3rd year computer science.  
 -[Neil Shevlin](https://github.com/neilshevlin), 2nd year computer science and business.  
 -[Prathamesh Sai](https://github.com/saisankp), 2nd year computer science.  
+-[Emer Murphy](https://github.com/emer289), 2nd year computer science. 
