@@ -54,3 +54,4 @@ Develop a **persistent application** (in a language of your choice) that consist
 | [Neil Shevlin](https://github.com/neilshevlin)   |   2nd year   | Computer science and business |
 | [Prathamesh Sai](https://github.com/saisankp)    |   2nd year   |       Computer science        |
 | [Emer Murphy](https://github.com/emer289)        |   2nd year   |       Computer science        |
+| [Tom Roberts](https://github.com/tomroberts201)  |   2nd year   |       Computer science        |
