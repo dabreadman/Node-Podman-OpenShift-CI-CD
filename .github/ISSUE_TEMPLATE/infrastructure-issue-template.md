@@ -7,16 +7,16 @@ assignees: ''
 
 ---
 
-**Requested infrastructural changes**
+**Requested infrastructural changes**  
 _Describe the requested changes_
 
-**Success Criteria**
+**Success Criteria**  
 _Create a checklist of criteria(s) for when the item is finished_
 - [ ] Criteria 1
 - [ ] Criteria 2
 
-**Where to Start**
+**Where to Start**  
 _Provide a link to a start point in the repository if exist_ 
 
-**Additional context**
+**Additional context**  
 Add any other context or screenshots about the request here.
