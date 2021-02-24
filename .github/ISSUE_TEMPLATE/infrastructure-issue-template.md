@@ -7,7 +7,7 @@ assignees: ''
 
 ---
 
-**Requested infrastructural changes **
+**Requested infrastructural changes**
 _Describe the requested changes_
 
 **Success Criteria**
