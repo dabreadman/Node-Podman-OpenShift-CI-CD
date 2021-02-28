@@ -18,9 +18,12 @@ app.engine( 'hbs', exhbs( {
 }));
 
 app.get('/', (req, res) => {
-    api.countries().then((response) => {
+    api
+    .countries()
+    .then((response) => {
         res.render('home',{info:response})
     }) 
+    .err((err)=>console.err(err))
 })
 
 app.listen(8080, ()=> {
