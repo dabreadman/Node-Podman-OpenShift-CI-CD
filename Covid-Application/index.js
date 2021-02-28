@@ -23,7 +23,8 @@ app.get('/', (req, res) => {
     .then((response) => {
         res.render('home',{info:response})
     }) 
-    .err((err)=>console.err(err))
+    .error((err)=>console.error(err))
+    .catch(handleError)
 })
 
 app.listen(8080, ()=> {
