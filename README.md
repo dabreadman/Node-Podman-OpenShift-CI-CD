@@ -6,8 +6,9 @@
 3. Run `yarn`.  
 4. For development uses, run `yarn start:dev`. This will run a [`nodemon`](https://nodemon.io/) server that will reset everything a code change is detected.  
 5. To test, run `yarn test`.  
-6. To build, run `yarn build`. This is done by [Webpack](https://webpack.js.org/).  
-7. To test production code, run `yarn start`.  
+6. To lint, run `yarn lint`.
+7. To build, run `yarn build`. This is done by [Webpack](https://webpack.js.org/).  
+8. To test production code, run `yarn start`.  
 
 
 ## Project specs
