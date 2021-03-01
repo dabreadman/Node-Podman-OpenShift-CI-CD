@@ -14,6 +14,6 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: '12.x'
-    - run: cd Covid-Application/
+    - run: ls
     - run: yarn build 
     - run: yarn test
