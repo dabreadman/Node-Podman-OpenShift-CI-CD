@@ -1,6 +1,7 @@
 const express = require('express');
 const api = require('novelcovid');
 const exhbs = require('express-handlebars');
+const path = require('path');
 
 // you can choose which URL to use, this will not change the behaviour of the API
 api.settings({
@@ -8,6 +9,8 @@ api.settings({
 });
 
 const app = express();
+const viewsPath = path.join(__dirname, '/views');
+app.set('views', viewsPath);
 
 app.set('view engine', 'hbs');
 
@@ -15,8 +18,8 @@ app.engine(
   'hbs',
   exhbs({
     extname: 'hbs',
+    layoutsDir: 'src/views/layouts',
     defaultView: 'home',
-    layoutsDir: `${__dirname}./../views/layouts`,
   }),
 );
 
