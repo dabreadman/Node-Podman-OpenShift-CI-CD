@@ -11,7 +11,7 @@ const app = express();
 
 app.set("view engine", "hbs");
 
-app.engine(
+ap.engine(
   "hbs",
   exhbs({
     extname: "hbs",
