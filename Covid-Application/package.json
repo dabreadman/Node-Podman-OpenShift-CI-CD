@@ -1,7 +1,7 @@
 {
-  "name": "Covid",
+  "name": "covid-app",
   "version": "1.0.0",
-  "description": "",
+  "description": "Application for visualising Covid",
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js",
