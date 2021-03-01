@@ -16,6 +16,8 @@ jobs:
         node-version: '12.x'
     - name: Install dependencies with Yarn
       run: yarn
+    - name: Lint with eslint
+      run: yarn lint
     - name: Build with Webpack
       run: yarn build 
     - name: Run tests
