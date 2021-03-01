@@ -2,6 +2,7 @@ const express = require('express');
 const api = require('novelcovid');
 const exhbs = require('express-handlebars');
 const path = require('path');
+const UNUSEDVAR = 'unused var'
 
 // you can choose which URL to use, this will not change the behaviour of the API
 api.settings({
