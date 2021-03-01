@@ -14,5 +14,5 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: '12.x'
-    - run: yarn build 
-    - run: yarn test
+    - run: npm run build 
+    - run: npm run test
