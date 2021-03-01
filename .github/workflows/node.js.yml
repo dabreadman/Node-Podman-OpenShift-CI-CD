@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./app
+        working-directory: ./Covid-Application
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js
