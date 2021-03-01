@@ -2,11 +2,12 @@
   "name": "covid-app",
   "version": "1.0.0",
   "description": "Application for visualising Covid",
-  "main": "index.js",
+  "private": "true",
   "scripts": {
-    "start": "nodemon index.js",
+    "start": "node ./dist/bundle.js",
+    "start:dev": "nodemon ./src/index.js",
     "build": "webpack --config ./webpack.config.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "exit 0 && echo \"Warning: no test specified\""
   },
   "keywords": [],
   "author": "",
@@ -14,8 +15,10 @@
   "dependencies": {
     "express": "^4.17.1",
     "express-handlebars": "^5.2.1",
+    "novelcovid": "^3.0.0"
+  },
+  "devDependencies": {
     "nodemon": "^2.0.7",
-    "novelcovid": "^3.0.0",
     "webpack": "^5.24.2",
     "webpack-cli": "^4.5.0",
     "webpack-node-externals": "^2.5.2"
