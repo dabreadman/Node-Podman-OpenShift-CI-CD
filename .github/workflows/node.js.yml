@@ -7,16 +7,12 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./Covid-Application
+        working-directory: ./app
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js
       uses: actions/setup-node@v1
       with:
         node-version: '12.x'
-    - name: Install dependencies with Yarn
-      run: yarn
-    - name: Build with Webpack
-      run: yarn build 
-    - name: Run tests
-      run: yarn test
+    - run: yarn build 
+    - run: yarn test
