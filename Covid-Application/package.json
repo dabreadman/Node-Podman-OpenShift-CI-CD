@@ -7,7 +7,7 @@
     "start": "node ./dist/bundle.js",
     "start:dev": "nodemon ./src/index.js",
     "build": "webpack --config ./webpack.config.js",
-    "test": "exit 0 && echo \"Warning: no test specified\""
+    "test": "exit 1 && echo \"Warning: no test specified\""
   },
   "keywords": [],
   "author": "",
