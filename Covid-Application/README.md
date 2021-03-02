@@ -3,7 +3,7 @@
 ### Architectural Overview
 
 <p align="center">We used <a href="https://nodejs.org/en/">Node.js</a> to develop this application as it is easy to scale and has extended support.</p>
-<img src="https://i.imgur.com/yDja5gt.jpg" width="500" align="center"/><br>
+<img src="https://i.imgur.com/yDja5gt.jpg" align="center"/><br>
 <p align="center">We also used <a href="https://expressjs.com/">Express</a> as a web framework as it is minimalist and unopinionated.</p>
 <img src="https://i.imgur.com/Gc37Bnx.png"/>
 <p align="center">Alongside this, we used <a href="https://www.npmjs.com/package/express-handlebars">Express Handlebars</a> as a Handlebars view engine for Express as it is simple as easy to use.</p>
