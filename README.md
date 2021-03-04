@@ -1,7 +1,7 @@
 # Node-Podman-OpenShift-CI-CD
 
 ## Development
-<sup>Please make sure `[Node.js](https://nodejs.org/en/)` is present.</sup>
+<sup>Please make sure [Node.js](https://nodejs.org/en/) is present.</sup>
 1. Clone this repo with `git clone <url>`.  
 2. Go into the directory `Covid-Application`.  
 3. Run `yarn` to resolve dependencies.  (Use `npm install --global yarn` if `yarn` is not present to install `yarn`).
