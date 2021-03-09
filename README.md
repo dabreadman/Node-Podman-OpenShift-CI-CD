@@ -1,9 +1,10 @@
 # Node-Podman-OpenShift-CI-CD
 
 ## Development
+<sup>Please make sure [Node.js](https://nodejs.org/en/) is present.</sup>
 1. Clone this repo with `git clone <url>`.  
 2. Go into the directory `Covid-Application`.  
-3. Run `yarn` to resolve dependencies.  
+3. Run `yarn` to resolve dependencies.  (Use `npm install --global yarn` if `yarn` is not present to install `yarn`).
 4. For development uses, run `yarn start:dev`. This will run a [`nodemon`](https://nodemon.io/) server that will restart the server every time a code change is detected.  
 5. To test, run `yarn test`.  
 6. To lint, run `yarn lint`. This is done by [Eslint](https://eslint.org/).  
