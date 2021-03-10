@@ -34,7 +34,7 @@ export default {
           country : 'Canada'
         },
         headers: {
-          'x-rapidapi-key': '21286c593amsh888587fa827580ep1d474cjsnc4a77218928f',
+          'x-rapidapi-key': 'XXXX',
           'x-rapidapi-host': 'covid-19-coronavirus-statistics.p.rapidapi.com'
         }
       })
