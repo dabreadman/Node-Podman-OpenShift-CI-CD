@@ -17,11 +17,11 @@ jobs:
     - name: Install dependencies with npm
       run: npm install
     - name: Lint with eslint
-      run: npm lint
+      run: npm run lint
     - name: Run tests
-      run: yarn test
+      run: npm test
     - name: Build with Webpack
-      run: yarn build 
+      run: npm run build 
     - name: Create Image
       run: podman build -t covid-vue .
 
