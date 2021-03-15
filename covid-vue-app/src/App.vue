@@ -8,10 +8,10 @@
 
 <script>
 // import Home from './pages/TheHomePage'
-import Footer from './components/layouts/TheFooter';
-import NavBar from './components/layouts/TheNavBar';
+import Footer from "./components/layouts/TheFooter";
+import NavBar from "./components/layouts/TheNavBar";
 export default {
-  name: 'App',
+  name: "App",
 
   components: {
     NavBar,
@@ -19,7 +19,6 @@ export default {
     // Home,
   },
 
-  data: () => ({
-  }),
+  data: () => ({}),
 };
 </script>
