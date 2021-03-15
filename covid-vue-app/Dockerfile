@@ -18,7 +18,7 @@ COPY --from=application_modules /usr/src/app/node_modules ./node_modules
 
 RUN npm test
 
-RUN npm lint
+RUN npm run lint
 
 RUN npm build
 
