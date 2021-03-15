@@ -16,9 +16,7 @@ COPY . .
 
 COPY --from=application_modules /usr/src/app/node_modules ./node_modules
 
-RUN npm test && npm run lint && npm build
-
-RUN ls
+RUN npm test && npm run lint && npm run build
 
 # Install Server dependencies
 FROM node:12-alpine as server_modules
@@ -29,16 +27,14 @@ COPY containerpackage.json ./package.json
 
 RUN npm install
 
-RUN ls
-
 # Start Server
 FROM node:12-alpine
 
 WORKDIR /usr/src/app
 
-COPY --from=prod_build /usr/src/app/dist/ ./dist/
+COPY --from=prod_build /usr/src/app/dist ./dist
 
-COPY --from=server_modules /usr/src/app/node_modules/ ./node_modules/
+COPY --from=server_modules /usr/src/app/node_modules ./node_modules
 
 COPY server.js ./
 
