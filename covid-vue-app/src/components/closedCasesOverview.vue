@@ -38,11 +38,11 @@ export default {
           'x-rapidapi-host': 'covid-19-coronavirus-statistics.p.rapidapi.com'
         }
       })
-      .then(response =>{
-        console.log(response.data)
-      }).catch(e =>{
-        console.log(e)
-      })
+      // .then(response =>{
+      //   console.log(response.data)
+      // }).catch(e =>{
+      //   console.log(e)
+      // })
     }
   }
 

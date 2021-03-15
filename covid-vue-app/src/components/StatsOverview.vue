@@ -34,13 +34,14 @@ export default {
         }
       })
       .then(response =>{
-        console.log(response)
+        //console.log(response)
         this.stats.cases = response.data.data.confirmed;
         this.stats.deaths = response.data.data.deaths;
         this.stats.recovered = response.data.data.recovered;
-      }).catch(e =>{
-        console.log(e)
       })
+      // .catch(e =>{
+      //   console.log(e)
+      // })
     }
   },
   created(){

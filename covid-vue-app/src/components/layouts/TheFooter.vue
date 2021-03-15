@@ -10,7 +10,7 @@
           <v-col>
             <v-btn
               v-for="link in links"
-              :key="id"
+              :key="link.id"
               class="mx-4 "
               icon
               :href='link.url'
