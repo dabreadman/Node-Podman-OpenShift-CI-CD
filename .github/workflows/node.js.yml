@@ -7,18 +7,21 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./Covid-Application
+        working-directory: ./covid-vue-app
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js
       uses: actions/setup-node@v1
       with:
         node-version: '12.x'
-    - name: Install dependencies with Yarn
-      run: yarn
+    - name: Install dependencies with npm
+      run: npm install
     - name: Lint with eslint
-      run: yarn lint
-    - name: Build with Webpack
-      run: yarn build 
+      run: npm lint
     - name: Run tests
       run: yarn test
+    - name: Build with Webpack
+      run: yarn build 
+    - name: Create Image
+      run: podman build -t covid-vue .
+
