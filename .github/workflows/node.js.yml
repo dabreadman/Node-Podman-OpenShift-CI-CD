@@ -10,5 +10,7 @@ jobs:
         working-directory: ./covid-vue-app
     steps:
       - uses: actions/checkout@v2
+      - name: Docker Layer Caching
+        uses: satackey/action-docker-layer-caching@v0.0.11
       - name: Create Image
         run: podman build -t covid-vue .
