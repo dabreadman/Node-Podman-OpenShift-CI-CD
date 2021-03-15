@@ -7,8 +7,8 @@ COPY package*.json ./
 
 RUN npm install
 
-# Test/Lint and Prod build
-FROM node:12-alpine as prod_build
+# Test and lint
+FROM node:12-alpine 
 
 WORKDIR /usr/src/app
 
@@ -16,9 +16,16 @@ COPY . .
 
 COPY --from=application_modules /usr/src/app/node_modules ./node_modules
 
-RUN npm test
+RUN npm test & npm run lint
 
-RUN npm run lint
+# Prod build
+FROM node:12-alpine 
+
+WORKDIR /usr/src/app
+
+COPY . . 
+
+COPY --from=application_modules /usr/src/app/node_modules ./node_modules
 
 RUN npm build
 
