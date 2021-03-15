@@ -7,8 +7,8 @@ COPY package*.json ./
 
 RUN npm install
 
-# Test and lint
-FROM node:12-alpine 
+# Test and lint and Prod build
+FROM node:12-alpine as prod_build
 
 WORKDIR /usr/src/app
 
@@ -16,18 +16,7 @@ COPY . .
 
 COPY --from=application_modules /usr/src/app/node_modules ./node_modules
 
-RUN npm test & npm run lint
-
-# Prod build
-FROM node:12-alpine 
-
-WORKDIR /usr/src/app
-
-COPY . . 
-
-COPY --from=application_modules /usr/src/app/node_modules ./node_modules
-
-RUN npm build
+RUN npm test && npm run lint && npm build
 
 # Install Server dependencies
 FROM node:12-alpine as server_modules
