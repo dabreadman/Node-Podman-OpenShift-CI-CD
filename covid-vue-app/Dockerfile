@@ -1,0 +1,16 @@
+# Install dev dependencies stage
+FROM node:12-alpine
+
+WORKDIR /app
+
+COPY containerpackage.json package.json
+
+RUN npm install
+
+COPY . . 
+
+ENV PORT=8080
+
+EXPOSE 8080
+
+CMD ["npm","start"]
