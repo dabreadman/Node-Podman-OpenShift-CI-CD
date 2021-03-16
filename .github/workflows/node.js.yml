@@ -20,10 +20,8 @@ jobs:
         if: env.TAG == ''
         run: |
           echo "TAG=${GITHUB_SHA::7}" | tee -a $GITHUB_ENV
-      # https://github.com/redhat-actions/buildah-build#readme
-      - name: Build from Dockerfile
-        uses: redhat-actions/buildah-build@v1
-        with:
+      - name: Create Image
+        run: podman build . --file Dockerfile
           image: ${{ env.APP_NAME }}
           tag: ${{ env.TAG }}
           # If you don't have a dockerfile, see:
