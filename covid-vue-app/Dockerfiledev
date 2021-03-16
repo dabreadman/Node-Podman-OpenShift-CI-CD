@@ -1,0 +1,14 @@
+# Install dev dependencies stage
+FROM node:12-alpine as application_modules
+
+WORKDIR /usr/src/app
+
+COPY . . 
+
+RUN npm install --silent
+
+ENV PORT=8080
+
+EXPOSE 8080
+
+CMD ["npm", "run", "serve"]
