@@ -1,6 +1,7 @@
 # covid-vue-app
 
 ## Develop in a containerised environment
+This serves a hot reload server serving Vue application in a image, accessible at `localhost:8080`
 ```
 docker-compose up
 ```
