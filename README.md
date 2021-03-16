@@ -1,5 +1,7 @@
 # Node-Podman-OpenShift-CI-CD
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/339b16262ce34730a12ce55c5b3e86f1)](https://app.codacy.com/gh/dabreadman/Node-Podman-OpenShift-CI-CD?utm_source=github.com&utm_medium=referral&utm_content=dabreadman/Node-Podman-OpenShift-CI-CD&utm_campaign=Badge_Grade_Settings)
+
 ## Development
 <sup>Please make sure [Node.js](https://nodejs.org/en/) is present.</sup>
 1. Clone this repo with `git clone <url>`.  
