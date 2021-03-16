@@ -1,5 +1,10 @@
 # covid-vue-app
 
+## Develop in a containerised environment
+```
+docker-compose up
+```
+
 ## Project setup
 
 ```
