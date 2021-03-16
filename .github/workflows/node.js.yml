@@ -1,5 +1,20 @@
 name: CI/CD
 
+env:
+  # ⬇️ EDIT with your registry and registry path.
+  REGISTRY: hub.docker.com/u/${{ secrets.DOCKERHUB_USERNAME }}/
+  # ⬇️ EDIT with your registry username.
+  REGISTRY_USER: ${{ secrets.DOCKERHUB_USERNAME }}
+  REGISTRY_PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
+  # ⬇️ EDIT to log into your OpenShift cluster and set up the context.
+  # See https://github.com/redhat-actions/oc-login#readme for how to retrieve these values.
+  # OPENSHIFT_SERVER: ${{ secrets.OPENSHIFT_SERVER }}
+  # OPENSHIFT_TOKEN: ${{ secrets.OPENSHIFT_TOKEN }}
+  # APP_PORT: 8080
+  # OPENSHIFT_NAMESPACE: ""
+  APP_NAME: ""
+  TAG: ""
+
 on: [push]
 
 jobs:
