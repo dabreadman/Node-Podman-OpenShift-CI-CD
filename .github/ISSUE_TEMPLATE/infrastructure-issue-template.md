@@ -1,5 +1,5 @@
 ---
-name: Infrastructure issue template
+name: Infrastructure request
 about: Request infrastructure changes.
 title: "[TASK]"
 labels: infrastructure
