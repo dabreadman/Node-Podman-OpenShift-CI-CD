@@ -7,11 +7,11 @@
 </template>
 
 <script>
-import Home from './pages/TheHomePage'
-import Footer from './components/layouts/TheFooter';
-import NavBar from './components/layouts/TheNavBar';
+import Home from "./pages/TheHomePage";
+import Footer from "./components/layouts/TheFooter";
+import NavBar from "./components/layouts/TheNavBar";
 export default {
-  name: 'App',
+  name: "App",
 
   components: {
     NavBar,
