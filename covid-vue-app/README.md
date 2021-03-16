@@ -1,6 +1,9 @@
 # covid-vue-app
 
 
+<sup>Please make sure [Node.js](https://nodejs.org/en/) is present.</sup>
+
+
 ## Project setup
 
 ```
