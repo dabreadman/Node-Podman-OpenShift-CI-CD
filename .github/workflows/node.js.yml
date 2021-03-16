@@ -7,18 +7,10 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./Covid-Application
+        working-directory: ./covid-vue-app
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js
-      uses: actions/setup-node@v1
-      with:
-        node-version: '12.x'
-    - name: Install dependencies with Yarn
-      run: yarn
-    - name: Lint with eslint
-      run: yarn lint
-    - name: Build with Webpack
-      run: yarn build 
-    - name: Run tests
-      run: yarn test
+      - uses: actions/checkout@v2
+      - name: Docker Layer Caching
+        uses: satackey/action-docker-layer-caching@v0.0.11
+      - name: Create Image
+        run: podman build . --file Dockerfile --tag covid-vue:$(date +%s)
