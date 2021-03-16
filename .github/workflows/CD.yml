@@ -36,9 +36,7 @@ env:
   APP_NAME: ""
   TAG: ""
 
-on:
-  push:
-    branches: [main]
+on: [ci-fin]
 
 jobs:
   openshift-ci-cd:

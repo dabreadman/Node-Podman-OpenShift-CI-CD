@@ -14,3 +14,8 @@ jobs:
         uses: satackey/action-docker-layer-caching@v0.0.11
       - name: Create Image
         run: podman build . --file Dockerfile --tag covid-vue:$(date +%s)
+      - name: Repository Dispatch
+        uses: peter-evans/repository-dispatch@v1
+        with:
+          token: ${{ secrets.REPO_ACCESS_TOKEN }}
+          event-type: ci-fin
