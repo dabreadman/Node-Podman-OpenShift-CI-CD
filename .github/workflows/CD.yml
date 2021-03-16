@@ -36,7 +36,9 @@ env:
   APP_NAME: ""
   TAG: ""
 
-on: [ci-fin]
+on:
+  repository_dispatch:
+    types: [my-event]
 
 jobs:
   openshift-ci-cd:
