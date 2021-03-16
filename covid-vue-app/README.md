@@ -1,17 +1,12 @@
 # covid-vue-app
 
 
-<sup>Please make sure [Node.js](https://nodejs.org/en/) is present.</sup>
+## Prerequisite
 
+ - [`docker`](https://docs.docker.com/get-docker/)   
 
-## Project setup
-
-```
-
-npm install
-
-```
-
+ - [`docker-compose`](https://docs.docker.com/compose/install/)  
+  
 
 ## Develop in a containerised environment
 
@@ -23,14 +18,23 @@ docker-compose up
 
 ```
 
-Install `docker-compose` [here](https://docs.docker.com/compose/install/)
-  
+
+***
+
 
 # [Not recommended]
 
 
 ## Development on Local Environment
 
+
+## Project setup
+
+```
+
+npm install
+
+```
 
 #### Compiles and hot-reloads for development
 
