@@ -90,8 +90,8 @@ Now that we're in the correct directory, let's start to do something.
 We define steps (`actions`) here, which would mimic _someone_ typing this into the terminal of this runner environment.  
 We could name our `actions` with `- name: <name>` for clarity, and our `actions` would usually be in the form of
 
-- `- uses: <some actions>`
-- `- run: <some command>`
+- `uses: <some actions>`
+- `run: <some command>`
   Find premade `actions` [here](https://github.com/marketplace/actions)
 
 This is part checkouts the code of our `repo` to this runner environment.
@@ -156,9 +156,7 @@ If there were any errors from these steps, the pipeline will fail and the develo
 ### Monitoring
 
 - **PagerDuty**
-
 - Graphite
-
 - AppDynamics
 
 ### Continuous Integration
@@ -168,15 +166,12 @@ If there were any errors from these steps, the pipeline will fail and the develo
 ### Web servers
 
 - **Nginx**
-
 - Apache
-
 - Caddy
 
 ### Pipeline Template
 
 - [IBM Kubernetes](https://github.com/actions/starter-workflows/blob/c59b62dee0eae1f9f368b7011cf05c2fc42cf084/ci/ibm.yml)
-
 - [Docker OpenShift](https://github.com/actions/starter-workflows/blob/c59b62dee0eae1f9f368b7011cf05c2fc42cf084/ci/openshift.yml)
 
 ## Author

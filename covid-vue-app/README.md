@@ -3,7 +3,6 @@
 ## Prerequisite
 
 - [`docker`](https://docs.docker.com/get-docker/)
-
 - [`docker-compose`](https://docs.docker.com/compose/install/)
 
 ## Develop in a Containerised Environment
