@@ -22,9 +22,10 @@ There are two different pipelines.
 
 - **Continuous Integration**
 - **Continuous Deployment**
-  <sub>And **Continuous Delivery** which we do not implement here.  
+  (And **Continuous Delivery** which we do not implement here.)  
+  
   A team normally has to choose between **Deployment** or **Delivery**.  
-  **Continuous Delivery** is basically **Continuous Deployment** with an extra step of needing **deployment approval**.</sub>
+  **Continuous Delivery** is basically **Continuous Deployment** with an extra step of needing **deployment approval**.
 
 ---
 
@@ -83,7 +84,7 @@ defaults:
     working-directory: ./Covid-Application
 ```
 
-<sub>I was led to believe that `cd Covid-Application/` would work.</sub>  
+I was led to believe that `cd Covid-Application/` would work.
 Now that we're in the correct directory, let's start to do something.
 
 We define steps (`actions`) here, which would mimic _someone_ typing this into the terminal of this runner environment.  
@@ -91,7 +92,7 @@ We could name our `actions` with `- name: <name>` for clarity, and our `actions`
 
 - `- uses: <some actions>`
 - `- run: <some command>`
-  <sub>Find premade `actions` [here](https://github.com/marketplace/actions)</sub>
+  Find premade `actions` [here](https://github.com/marketplace/actions)
 
 This is part checkouts the code of our `repo` to this runner environment.
 
@@ -114,7 +115,7 @@ This part here declare the `actions` (commands to run), in which we execute thes
 `Yarn` is supported out of the box with `Node.js`
 Read more [here](https://docs.github.com/en/actions/guides/building-and-testing-nodejs) (also includes boilerplate).
 
-```
+```shell
 yarn # npm install
 yarn lint # npm run lint
 yarn build # npm run build
