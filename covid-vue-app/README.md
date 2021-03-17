@@ -1,12 +1,10 @@
 # covid-vue-app
 
-
 ## Prerequisite
 
- - [`docker`](https://docs.docker.com/get-docker/)   
+- [`docker`](https://docs.docker.com/get-docker/)
 
- - [`docker-compose`](https://docs.docker.com/compose/install/)  
-  
+- [`docker-compose`](https://docs.docker.com/compose/install/)
 
 ## Develop in a containerised environment
 
@@ -18,15 +16,11 @@ docker-compose up
 
 ```
 
-
-***
-
+---
 
 # [Not recommended]
 
-
 ## Development on Local Environment
-
 
 ## Project setup
 
@@ -44,7 +38,6 @@ npm run serve
 
 ```
 
-
 #### Compiles and minifies for production
 
 ```
@@ -53,7 +46,6 @@ npm run build
 
 ```
 
-
 #### Lints and fixes files
 
 ```
@@ -61,7 +53,6 @@ npm run build
 npm run lint
 
 ```
-
 
 #### Customize configuration
 
