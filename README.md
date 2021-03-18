@@ -4,13 +4,13 @@
 
 A containerised CI/CD pipeline for **OpenShift** applications using **Github Actions** containerised using **Podman**.
 
-Develop a **persistent application** (in a language of your choice) that consists of a front-end component.  
+Develop a **persistent application** that consists of a front-end component.  
 Set up a **CI/CD pipeline** to **BUILD, BAKE and DEPLOY** your application to a container platform using **GitOps methodologies** and approaches (fully automated deployment).  
-Include **scanning of code** , **container images** and **production environments** for best practices and security purposes in your automated process.
+Include **scanning of code**, **container images** and **production environments** for best practices and security purposes in your automated process.
 
 ## Development
 
-This project is of a two part project.
+This project is of a two-part project.
 
 - **Pipeline**
 - **Application**  
@@ -22,20 +22,20 @@ There are two different pipelines.
 
 - **Continuous Integration**
 - **Continuous Deployment**
-  (And **Continuous Delivery** which we do not implement here.)  
+  (And **Continuous Delivery** which we do not implement here)  
   
   A team normally has to choose between **Deployment** or **Delivery**.  
-  **Continuous Delivery** is basically **Continuous Deployment** with an extra step of needing **deployment approval**.
+  **Continuous Delivery** is **Continuous Deployment** with an extra step of needing **deployment approval**.
 
 ---
 
 ## Continuous Integration
 
-An example of **Continuous Integration** pipeline is [this](https://github.com/dabreadman/Node-Podman-OpenShift-CI-CD/blob/3d502434fd4edbf433f45945ca151c0c91cd2994/.github/workflows/node.js.yml).
+An example of a **Continuous Integration** pipeline is [this](https://github.com/dabreadman/Node-Podman-OpenShift-CI-CD/blob/3d502434fd4edbf433f45945ca151c0c91cd2994/.github/workflows/node.js.yml).
 
 We will be explaining using [this](https://github.com/dabreadman/Node-Podman-OpenShift-CI-CD/tree/3d502434fd4edbf433f45945ca151c0c91cd2994) branch where we have `test` and `linting` outside of a container.
 
-In **Github Actions**, we define the pipeline in a `YAML`file (**indentation strict**), which is also supported by other pipelining solutions.
+In **Github Actions**, we define the pipeline in a `YAML` file (**indentation strict**), which is also supported by other pipelining solutions.
 
 We first define the name of this pipeline (or `workflow` in **Github Actions**),
 
@@ -84,14 +84,14 @@ defaults:
     working-directory: ./Covid-Application
 ```
 
-I was led to believe that `cd Covid-Application/` would work.
+I was led to believe that a step running `cd Covid-Application/` would also work.  
 Now that we're in the correct directory, let's start to do something.
 
 We define steps (`actions`) here, which would mimic _someone_ typing this into the terminal of this runner environment.  
-We could name our `actions` with `- name: <name>` for clarity, and our `actions` would usually be in the form of
+We could name our `actions` with `name: <name>` for clarity, and our `actions` would usually be in the form of
 
 - `uses: <some actions>`
-- `run: <some command>`
+- `run: <some command>`  
   Find premade `actions` [here](https://github.com/marketplace/actions)
 
 This is part checkouts the code of our `repo` to this runner environment.
@@ -125,7 +125,7 @@ yarn test # npm test
 ```yaml
 - name: Install dependencies with Yarn
   run: yarn
-- name: Lint with eslint
+- name: Lint with ESLint
   run: yarn lint
 - name: Build with Webpack
   run: yarn build
