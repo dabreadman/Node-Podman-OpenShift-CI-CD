@@ -6,3 +6,7 @@ updates:
     directory: "./covid-vue-app/" # Location of package manifests
     schedule:
       interval: "weekly"
+      day: "sunday"
+    target-branch: "main"
+    labels:
+      - "npm dependencies" 
