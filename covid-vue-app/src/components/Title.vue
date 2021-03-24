@@ -1,13 +1,11 @@
 <template lang="html">
-  <v-container >
+  <v-container>
     <h1>Covid 19 visualisation application</h1>
   </v-container>
 </template>
 
 <script>
-export default {
-}
+export default {};
 </script>
 
-<style lang="css" scoped>
-</style>
+<style lang="css" scoped></style>
