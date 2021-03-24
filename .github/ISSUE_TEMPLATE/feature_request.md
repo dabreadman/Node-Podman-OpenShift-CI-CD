@@ -24,5 +24,6 @@ _Point to the location to start working on this request if applicable._
 
 **Success criteria**
 _List all the items to be completed to finish this feature._
+
 - [ ] Item 1
 - [ ] Item 2

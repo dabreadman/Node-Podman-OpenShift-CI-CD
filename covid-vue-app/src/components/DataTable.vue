@@ -10,11 +10,7 @@
       hide-default-footer
     >
       <template v-slot:header>
-        <v-toolbar
-          dark
-          color="blue darken-3"
-          class="mb-1"
-        >
+        <v-toolbar dark color="blue darken-3" class="mb-1">
           <v-text-field
             v-model="search"
             clearable
@@ -36,24 +32,11 @@
               label="Sort by"
             ></v-select>
             <v-spacer></v-spacer>
-            <v-btn-toggle
-              v-model="sortDesc"
-              mandatory
-            >
-              <v-btn
-                large
-                depressed
-                color="blue"
-                :value="false"
-              >
+            <v-btn-toggle v-model="sortDesc" mandatory>
+              <v-btn large depressed color="blue" :value="false">
                 <v-icon>mdi-arrow-up</v-icon>
               </v-btn>
-              <v-btn
-                large
-                depressed
-                color="blue"
-                :value="true"
-              >
+              <v-btn large depressed color="blue" :value="true">
                 <v-icon>mdi-arrow-down</v-icon>
               </v-btn>
             </v-btn-toggle>
@@ -79,11 +62,10 @@
               <v-divider></v-divider>
 
               <v-list dense>
-                <v-list-item
-                  v-for="(key, index) in filteredKeys"
-                  :key="index"
-                >
-                  <v-list-item-content :class="{ 'blue--text': sortBy === key }">
+                <v-list-item v-for="(key, index) in filteredKeys" :key="index">
+                  <v-list-item-content
+                    :class="{ 'blue--text': sortBy === key }"
+                  >
                     {{ key }}:
                   </v-list-item-content>
                   <v-list-item-content
@@ -100,11 +82,7 @@
       </template>
 
       <template v-slot:footer>
-        <v-row
-          class="mt-2"
-          align="center"
-          justify="center"
-        >
+        <v-row class="mt-2" align="center" justify="center">
           <span class="grey--text">Items per page</span>
           <v-menu offset-y>
             <template v-slot:activator="{ on, attrs }">
@@ -133,10 +111,7 @@
 
           <v-spacer></v-spacer>
 
-          <span
-            class="mr-4
-            grey--text"
-          >
+          <span class="mr-4 grey--text">
             Page {{ page }} of {{ numberOfPages }}
           </span>
           <v-btn
@@ -148,13 +123,7 @@
           >
             <v-icon>mdi-chevron-left</v-icon>
           </v-btn>
-          <v-btn
-            fab
-            dark
-            color="blue darken-3"
-            class="ml-1"
-            @click="nextPage"
-          >
+          <v-btn fab dark color="blue darken-3" class="ml-1" @click="nextPage">
             <v-icon>mdi-chevron-right</v-icon>
           </v-btn>
         </v-row>
@@ -165,128 +134,114 @@
 
 <script>
 export default {
-    data () {
-      return {
-        itemsPerPageArray: [4, 8, 12],
-        search: '',
-        filter: {},
-        sortDesc: false,
-        page: 1,
-        itemsPerPage: 4,
-        sortBy: 'name',
-        keys: [
-          'Name',
-          'Deaths',
-          'TotalCases',
-          'NewCases',
-          'CasesPerMillion',
-
-        ],
-        items: [
-          {
-            name: 'USA',
-            deaths: 541449,
-            totalcases: 29843045,
-            newcases: 41231,
-            casespermillion: 89798,
-
-          },
-          {
-            name: 'India',
-            deaths: 158213,
-            totalcases: 11284285,
-            newcases: 22815,
-            casespermillion: 8122,
-
-          },
-          {
-            name: 'Brazil',
-            deaths: 268568,
-            totalcases: 11125017,
-            newcases: null,
-            casespermillion: 52084,
-
-          },
-          {
-            name: 'Russia',
-            deaths: 90275,
-            totalcases: 4351553,
-            newcases: 9079,
-            casespermillion: 29810,
-
-          },
-          {
-            name: 'UK',
-            deaths: 124987,
-            totalcases: 4234924,
-            newcases: 5926,
-            casespermillion: 62158,
-
-          },
-          {
-            name: 'France',
-            deaths: 89565,
-            totalcases: 3963165,
-            newcases: 30303,
-            casespermillion: 60624,
-
-          },
-          {
-            name: 'Spain',
-            deaths: 71727,
-            totalcases: 3164983,
-            newcases: null,
-            casespermillion: 67675,
-
-          },
-          {
-            name: 'Italy',
-            deaths: 100811,
-            totalcases: 3123368,
-            newcases: 22409,
-            casespermillion: 51711,
-
-          },
-          {
-            name: 'Turkey',
-            deaths: 29227,
-            totalcases: 2821943,
-            newcases: 14556,
-            casespermillion: 33215,
-
-          },
-          {
-            name: 'Ireland',
-            deaths: 4499,
-            totalcases: 224588,
-            newcases: 631,
-            casespermillion: 45138,
-
-          },
-        ],
+  data() {
+    return {
+      itemsPerPageArray: [4, 8, 12],
+      search: "",
+      filter: {},
+      sortDesc: false,
+      page: 1,
+      itemsPerPage: 4,
+      sortBy: "name",
+      keys: ["Name", "Deaths", "TotalCases", "NewCases", "CasesPerMillion"],
+      items: [
+        {
+          name: "USA",
+          deaths: 541449,
+          totalcases: 29843045,
+          newcases: 41231,
+          casespermillion: 89798,
+        },
+        {
+          name: "India",
+          deaths: 158213,
+          totalcases: 11284285,
+          newcases: 22815,
+          casespermillion: 8122,
+        },
+        {
+          name: "Brazil",
+          deaths: 268568,
+          totalcases: 11125017,
+          newcases: null,
+          casespermillion: 52084,
+        },
+        {
+          name: "Russia",
+          deaths: 90275,
+          totalcases: 4351553,
+          newcases: 9079,
+          casespermillion: 29810,
+        },
+        {
+          name: "UK",
+          deaths: 124987,
+          totalcases: 4234924,
+          newcases: 5926,
+          casespermillion: 62158,
+        },
+        {
+          name: "France",
+          deaths: 89565,
+          totalcases: 3963165,
+          newcases: 30303,
+          casespermillion: 60624,
+        },
+        {
+          name: "Spain",
+          deaths: 71727,
+          totalcases: 3164983,
+          newcases: null,
+          casespermillion: 67675,
+        },
+        {
+          name: "Italy",
+          deaths: 100811,
+          totalcases: 3123368,
+          newcases: 22409,
+          casespermillion: 51711,
+        },
+        {
+          name: "Turkey",
+          deaths: 29227,
+          totalcases: 2821943,
+          newcases: 14556,
+          casespermillion: 33215,
+        },
+        {
+          name: "Ireland",
+          deaths: 4499,
+          totalcases: 224588,
+          newcases: 631,
+          casespermillion: 45138,
+        },
+      ],
+    };
+  },
+  computed: {
+    numberOfPages() {
+      return Math.ceil(this.items.length / this.itemsPerPage);
+    },
+    filteredKeys() {
+      return this.keys.filter((key) => key !== "Name");
+    },
+  },
+  methods: {
+    nextPage() {
+      if (this.page + 1 <= this.numberOfPages) {
+        this.page += 1;
       }
     },
-    computed: {
-      numberOfPages () {
-        return Math.ceil(this.items.length / this.itemsPerPage)
-      },
-      filteredKeys () {
-        return this.keys.filter(key => key !== 'Name')
-      },
+    formerPage() {
+      if (this.page - 1 >= 1) {
+        this.page -= 1;
+      }
     },
-    methods: {
-      nextPage () {
-        if (this.page + 1 <= this.numberOfPages) this.page += 1
-      },
-      formerPage () {
-        if (this.page - 1 >= 1) this.page -= 1
-      },
-      updateItemsPerPage (number) {
-        this.itemsPerPage = number
-      },
+    updateItemsPerPage(number) {
+      this.itemsPerPage = number;
     },
-  }
+  },
+};
 </script>
 
-<style lang="css" scoped>
-</style>
+<style lang="css" scoped></style>
