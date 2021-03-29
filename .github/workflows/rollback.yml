@@ -23,8 +23,7 @@ on:
 
 jobs:
   prod-rollback:
-    name: Deploy to OpenShift Production
-    needs: [dev-deployment]
+    name: Rollback OpenShift Production to specific version
     runs-on: ubuntu-latest
     environment: production
 
