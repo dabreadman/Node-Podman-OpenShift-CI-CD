@@ -28,23 +28,27 @@ export default {
   }),
   methods: {
     getData: function () {
-      axios.get(
-        `https://covid-19-coronavirus-statistics.p.rapidapi.com/v1/total`,
-        {
-          params: {
-            country: "Canada",
-          },
-          headers: {
-            "x-rapidapi-key": "XXXXXX",
-            "x-rapidapi-host": "covid-19-coronavirus-statistics.p.rapidapi.com",
-          },
-        }
-      );
-      // .then(response =>{
-      //   console.log(response.data)
-      // }).catch(e =>{
-      //   console.log(e)
-      // })
+      axios
+        .get(
+          `https://covid-19-coronavirus-statistics.p.rapidapi.com/v1/total`,
+          {
+            params: {
+              country: "Canada",
+            },
+            headers: {
+              "x-rapidapi-key": "XXXXXX",
+              "x-rapidapi-host":
+                "covid-19-coronavirus-statistics.p.rapidapi.com",
+            },
+          }
+        )
+        // .then((response) => {
+        //   console.log(response.data);
+        // })
+        .catch
+        // (e) => {
+        // console.log(e);}
+        ();
     },
   },
 };

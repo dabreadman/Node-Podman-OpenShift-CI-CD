@@ -228,10 +228,14 @@ export default {
   },
   methods: {
     nextPage() {
-      if (this.page + 1 <= this.numberOfPages) this.page += 1;
+      if (this.page + 1 <= this.numberOfPages) {
+        this.page += 1;
+      }
     },
     formerPage() {
-      if (this.page - 1 >= 1) this.page -= 1;
+      if (this.page - 1 >= 1) {
+        this.page -= 1;
+      }
     },
     updateItemsPerPage(number) {
       this.itemsPerPage = number;

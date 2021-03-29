@@ -7,7 +7,7 @@
 </template>
 
 <script>
-// import Home from './pages/TheHomePage'
+// import Home from "./pages/TheHomePage";
 import Footer from "./components/layouts/TheFooter";
 import NavBar from "./components/layouts/TheNavBar";
 export default {

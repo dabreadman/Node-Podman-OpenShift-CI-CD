@@ -23,7 +23,7 @@ FROM node:12-alpine as server_modules
 
 WORKDIR /usr/src/app
 
-COPY containerpackage.json ./package.json
+COPY container-package.json ./package.json
 
 RUN npm install
 
@@ -38,7 +38,7 @@ COPY --from=server_modules /usr/src/app/node_modules ./node_modules
 
 COPY server.js ./
 
-COPY containerpackage.json ./package.json
+COPY container-package.json ./package.json
 
 ENV PORT=8080
 
