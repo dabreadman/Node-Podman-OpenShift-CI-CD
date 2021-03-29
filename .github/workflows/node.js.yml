@@ -30,7 +30,7 @@ jobs:
     environment: development
 
     outputs:
-      IMAGE: ${{ steps.image.outputs.image }}
+      image: ${{ steps.image.outputs.image }}
 
     steps:
       - name: Check if secrets exists
@@ -131,6 +131,6 @@ jobs:
         uses: redhat-actions/oc-new-app@v1
         with:
           app_name: ${{ env.APP_NAME }}
-          image: ${{ needs.dev-deployment.steps.image.outputs.image }}
+          image: ${{ needs.dev-deployment.outputs.image }}
           namespace: ${{ env.OPENSHIFT_PROD }}
           port: ${{ env.APP_PORT }}
