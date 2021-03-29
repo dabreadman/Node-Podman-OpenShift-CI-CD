@@ -38,9 +38,9 @@ jobs:
         with:
           script: |
             const secrets = {
-              REGISTRY_PASSWORD: `${{ secrets.REGISTRY_PASSWORD }}`,
-              OPENSHIFT_SERVER: `${{ secrets.OPENSHIFT_SERVER }}`,
-              OPENSHIFT_TOKEN: `${{ secrets.OPENSHIFT_TOKEN }}`,
+              REGISTRY_PASSWORD: `${{ env.REGISTRY_PASSWORD }}`,
+              OPENSHIFT_SERVER: `${{ env.OPENSHIFT_SERVER }}`,
+              OPENSHIFT_TOKEN: `${{ env.OPENSHIFT_TOKEN }}`,
             };
 
             const missingSecrets = Object.entries(secrets).filter(([ name, value ]) => {
