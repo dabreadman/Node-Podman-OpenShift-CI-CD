@@ -1,5 +1,15 @@
 name: Rollback
 
+on:
+  workflow_dispatch:
+    inputs:
+      app_name:
+        description: "Application name for image"
+        required: true
+      tag:
+        description: "Image version tag"
+        required: true
+
 env:
   # Using Quay.io
   REGISTRY: quay.io
@@ -10,16 +20,6 @@ env:
   OPENSHIFT_TOKEN: ${{ secrets.OPENSHIFT_TOKEN }}
   APP_PORT: 8080
   OPENSHIFT_PROD: ${{ secrets.OPENSHIFT_PROD }}
-
-on:
-  workflow_dispatch:
-    inputs:
-      APP_NAME:
-        description: "Application name for image"
-        required: true
-      TAG:
-        description: "Tag version of image"
-        required: true
 
 jobs:
   prod-rollback:
