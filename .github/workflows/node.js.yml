@@ -121,7 +121,7 @@ jobs:
       run: podman build . --file Dockerfile --tag ${{ env.APP_NAME }}:${{ env.TAG }}
 
     - name: Registry Autherisation
-      run: podman login quay.io -u {{ secrets.DOCKERHUB_USERNAME}} -p {{ secrets.REGISTRY_PASSWORD }}
+      run: podman login -u {{ secrets.DOCKERHUB_USERNAME }} -p {{ secrets.REGISTRY_PASSWORD }} quay.io 
     - name: Push to registry
       run: podman push ${{ env.APP_NAME }}:${{ env.TAG }}
 
