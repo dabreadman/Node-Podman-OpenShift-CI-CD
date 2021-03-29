@@ -30,13 +30,14 @@ APP_NAME: "covid-app"
 TAG: ""
 ```
 
-We then setup our workflow triggers, here we have it on `push` to `main` and [`workflow_dispatch`](https://docs.github.com/en/actions/reference/events-that-trigger-workflows#workflow_dispatch) incase we want to trigger the workflow manually.
+We then setup our workflow triggers, here we have it on `push` to `main` or `pull_request` and [`workflow_dispatch`](https://docs.github.com/en/actions/reference/events-that-trigger-workflows#workflow_dispatch) incase we want to trigger the workflow manually.
 
 ```yaml
 on:
     push:
         branches:
             - main
+  pull_request:
     workflow_dispatch:
 ```
 
