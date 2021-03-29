@@ -3,7 +3,7 @@ name: CI/CD
 env:
   # Using Quay.io
   REGISTRY: quay.io/dabreadman
-  REGISTRY_USER: dabreadman
+  REGISTRY_USERNAME: dabreadman
   REGISTRY_PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
 
   # OpenShift Token
