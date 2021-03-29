@@ -2,7 +2,7 @@ name: CI/CD
 
 env:
   # ⬇️ EDIT with your registry and registry path.
-  REGISTRY: hub.docker.com/u/${{ secrets.DOCKERHUB_USERNAME }}/
+  REGISTRY: ${{ secrets.REGISTRY }}/
   # ⬇️ EDIT with your registry username.
   REGISTRY_USER: ${{ secrets.DOCKERHUB_USERNAME }}
   REGISTRY_PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
