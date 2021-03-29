@@ -26,7 +26,7 @@ jobs:
     defaults:
       run:
         working-directory: ./covid-vue-app
-    environment: development
+    environment: dev
 
     outputs:
       ROUTE: ${{ steps.deploy-and-expose.outputs.route }}
