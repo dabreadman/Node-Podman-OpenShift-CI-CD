@@ -117,18 +117,8 @@ jobs:
       run: |
         echo "TAG=${GITHUB_SHA::7}" | tee -a $GITHUB_ENV
 
-    # https://github.com/redhat-actions/buildah-build#readme
-    - name: Build from Dockerfile
-      id: image-build
-      uses: redhat-actions/buildah-build@v2
-      with:
-        image: ${{ env.APP_NAME }}
-        tags: ${{ env.TAG }}
-        # If you don't have a dockerfile, see:
-        # https://github.com/redhat-actions/buildah-build#scratch-build-inputs
-        # Otherwise, point this to your Dockerfile relative to the repository root.
-        dockerfiles: |
-          ./covid-vue-app/Dockerfile
+    - name: Create Image
+      run: podman build . --file Dockerfile --tag ${{ env.APP_NAME }}:${{ env.TAG }}
 
     # https://github.com/redhat-actions/push-to-registry#readme
     - name: Push to registry
