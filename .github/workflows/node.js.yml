@@ -2,7 +2,7 @@ name: CI/CD
 
 env:
   # Using Quay.io
-  REGISTRY: quay.io/dabreadman
+  REGISTRY: quay.io
   REGISTRY_USERNAME: dabreadman
   REGISTRY_PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
 
@@ -80,12 +80,12 @@ jobs:
         uses: satackey/action-docker-layer-caching@v0.0.11
 
       - name: Create Image
-        run: podman build . --file Dockerfile --tag ${{ env.REGISTRY }}/${{ env.APP_NAME }}:${{ env.TAG }}
+        run: podman build . --file Dockerfile --tag ${{ env.REGISTRY }}/${{ env.REGISTRY_USERNAME }}/${{ env.APP_NAME }}:${{ env.TAG }}
 
       - name: Registry Autherisation
         run: podman login -u ${{ env.REGISTRY_USERNAME }} -p ${{ env.REGISTRY_PASSWORD }} quay.io
       - name: Push to registry
-        run: podman push ${{ env.REGISTRY }}/${{ env.APP_NAME }}:${{ env.TAG }}
+        run: podman push ${{ env.REGISTRY }}/${{ env.REGISTRY_USERNAME }}/${{ env.APP_NAME }}:${{ env.TAG }}
 
       - name: Log in to OpenShift
         uses: redhat-actions/oc-login@v1
@@ -100,13 +100,13 @@ jobs:
         uses: redhat-actions/oc-new-app@v1
         with:
           app_name: ${{ env.APP_NAME }}
-          image: ${{ env.REGISTRY }}/${{ env.APP_NAME }}:${{ env.TAG }}
+          image: ${{ env.REGISTRY }}/${{ env.REGISTRY_USERNAME }}/${{ env.APP_NAME }}:${{ env.TAG }}
           namespace: ${{ env.OPENSHIFT_NAMESPACE }}
           port: ${{ env.APP_PORT }}
           
       - name: Pass image reference
         id: image
-        run: echo "::set-output name=image::${{ env.REGISTRY }}/${{ env.APP_NAME }}:${{ env.TAG }}"
+        run: echo "::set-output name=image::${{ env.REGISTRY }}/${{ env.REGISTRY_USERNAME }}/${{ env.APP_NAME }}:${{ env.TAG }}"
 
   prod-deployment:
     name: Deploy to OpenShift Production
