@@ -125,8 +125,8 @@ jobs:
       id: push-to-registry
       uses: redhat-actions/push-to-registry@v2
       with:
-        image: ${{ steps.image-build.outputs.image }}
-        tags: ${{ steps.image-build.outputs.tags }}
+        image: ${{ env.APP_NAME }}
+        tags: ${{ env.TAG }}
         registry: ${{ env.REGISTRY }}
         username: ${{ env.REGISTRY_USER }}
         password: ${{ env.REGISTRY_PASSWORD }}
