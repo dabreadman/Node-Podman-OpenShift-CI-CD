@@ -9,7 +9,7 @@ const numberOfTests = 5;
 
 async function openTheApp() {
     try{
-        await driver.get("http://192.168.1.11:8080/");
+        await driver.get("http://localhost:8080/");
         numberOfTestsCompleted = numberOfTestsCompleted + 1;
         console.log("RUNNING TEST STEP " + numberOfTestsCompleted + ": Opening the Application at Port 8080..");
     }catch(error){
