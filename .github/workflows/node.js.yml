@@ -103,7 +103,12 @@ jobs:
           image: ${{ env.REGISTRY }}/${{ env.APP_NAME }}:${{ env.TAG }}
           namespace: ${{ env.OPENSHIFT_NAMESPACE }}
           port: ${{ env.APP_PORT }}
-
+          
+      - name: Upload image
+        uses: ishworkh/docker-image-artifact-upload@v1
+        with:
+          image: ${{ env.REGISTRY }}/${{ env.APP_NAME }}:${{ env.TAG }}
+          
       - name: Pass image reference
         id: image
         run: echo "::set-output name=image::${{ env.REGISTRY }}/${{ env.APP_NAME }}:${{ env.TAG }}::"
@@ -118,6 +123,10 @@ jobs:
     environment: production
 
     steps:
+      - name: Download image
+        uses: ishworkh/docker-image-artifact-download@v1
+        with:
+          image: ${{ needs.dev-deployment.outputs.image }}
       - name: Log in to OpenShift
         uses: redhat-actions/oc-login@v1
         with:
