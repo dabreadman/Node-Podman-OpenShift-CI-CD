@@ -15,10 +15,10 @@ on:
   workflow_dispatch:
     inputs:
       APP_NAME:
-        description: Application name for image
+        description: "Application name for image"
         required: true
       TAG:
-        description: Tag version of image
+        description: "Tag version of image"
         required: true
 
 jobs:
