@@ -3,6 +3,8 @@ FROM node:12-alpine as application_modules
 
 WORKDIR /usr/src/app
 
+RUN ls
+
 COPY package*.json ./
 
 RUN npm install
@@ -11,6 +13,8 @@ RUN npm install
 FROM node:12-alpine as prod_build
 
 WORKDIR /usr/src/app
+
+RUN ls
 
 COPY . . 
 
@@ -23,6 +27,8 @@ FROM node:12-alpine as server_modules
 
 WORKDIR /usr/src/app
 
+RUN ls
+
 COPY container-package.json ./package.json
 
 RUN npm install
@@ -31,6 +37,8 @@ RUN npm install
 FROM node:12-alpine
 
 WORKDIR /usr/src/app
+
+RUN ls
 
 COPY --from=prod_build /usr/src/app/dist ./dist
 
