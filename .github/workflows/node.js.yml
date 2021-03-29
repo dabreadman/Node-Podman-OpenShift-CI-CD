@@ -11,6 +11,7 @@ env:
   OPENSHIFT_TOKEN: ${{ secrets.OPENSHIFT_TOKEN }}
   APP_PORT: 8080
   OPENSHIFT_NAMESPACE: ${{ secrets.OPENSHIFT_NAMESPACE }}
+  OPENSHIFT_PROD: ${{ secrets.OPENSHIFT_PROD }}
 
   APP_NAME: "covid-app"
   TAG: ""
@@ -20,8 +21,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  openshift-ci-cd:
-    name: Build and deploy to OpenShift
+  dev-deployment:
+    name: Build and deploy to OpenShift Dev
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -31,6 +32,7 @@ jobs:
     outputs:
       ROUTE: ${{ steps.deploy-and-expose.outputs.route }}
       SELECTOR: ${{ steps.deploy-and-expose.outputs.selector }}
+      IMAGE: ${{ steps.image.outputs.image }}
 
     steps:
       - name: Check if secrets exists
@@ -75,7 +77,7 @@ jobs:
         if: env.TAG == ''
         run: |
           echo "TAG=${GITHUB_SHA::7}" | tee -a $GITHUB_ENV
-          
+
       - name: Docker Layer Caching
         uses: satackey/action-docker-layer-caching@v0.0.11
 
@@ -102,6 +104,84 @@ jobs:
           app_name: ${{ env.APP_NAME }}
           image: ${{ env.REGISTRY }}/${{ env.APP_NAME }}:${{ env.TAG }}
           namespace: ${{ env.OPENSHIFT_NAMESPACE }}
+          port: ${{ env.APP_PORT }}
+
+      - name: View application route
+        run: |
+          [[ -n ${{ env.ROUTE }} ]] || (echo "Determining application route failed in previous step"; exit 1)
+          echo "======================== Your application is available at: ========================"
+          echo ${{ env.ROUTE }}
+          echo "==================================================================================="
+          echo
+          echo "Your app can be taken down with: \"oc delete all --selector='${{ env.SELECTOR }}'\""
+        env:
+          ROUTE: ${{ steps.deploy-and-expose.outputs.route }}
+          SELECTOR: ${{ steps.deploy-and-expose.outputs.selector }}
+
+      - name: Pass image reference
+        id: image
+        run: "::set-output name=image::${{ env.REGISTRY }}/${{ env.APP_NAME }}:${{ env.TAG }}"
+
+  prod-deployment:
+    name: Deploy to OpenShift Production
+    needs: [dev-deployment]
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./covid-vue-app
+    environment: production
+
+    outputs:
+      ROUTE: ${{ steps.deploy-and-expose.outputs.route }}
+      SELECTOR: ${{ steps.deploy-and-expose.outputs.selector }}
+
+    steps:
+      - name: Check if secrets exists
+        uses: actions/github-script@v3
+        with:
+          script: |
+            const secrets = {
+              REGISTRY_PASSWORD: `${{ env.REGISTRY_PASSWORD }}`,
+              OPENSHIFT_SERVER: `${{ env.OPENSHIFT_SERVER }}`,
+              OPENSHIFT_TOKEN: `${{ env.OPENSHIFT_TOKEN }}`,
+            };
+
+            const missingSecrets = Object.entries(secrets).filter(([ name, value ]) => {
+              if (value.length === 0) {
+                core.warning(`Secret "${name}" is not set`);
+                return true;
+              }
+              core.info(`✔️ Secret "${name}" is set`);
+              return false;
+
+            });
+
+            if (missingSecrets.length > 0) {
+              core.setFailed(`❌ At least one required secret is not set in the repository. \n` +
+                "You can add it using:\n" +
+                "GitHub UI: https://docs.github.com/en/actions/reference/encrypted-secrets#creating-encrypted-secrets-for-a-repository \n" +
+                "GitHub CLI: https://cli.github.com/manual/gh_secret_set \n" +
+                "Also, refer to https://github.com/redhat-actions/oc-login#getting-started-with-the-action-or-see-example");
+            }
+            else {
+              core.info(`✅ All the required secrets are set`);
+            }
+
+      - name: Log in to OpenShift
+        uses: redhat-actions/oc-login@v1
+        with:
+          openshift_server_url: ${{ env.OPENSHIFT_SERVER }}
+          openshift_token: ${{ env.OPENSHIFT_TOKEN }}
+          insecure_skip_tls_verify: true
+          namespace: ${{ env.OPENSHIFT_PROD }}
+
+      - name: Create and expose app
+        id: deploy-and-expose
+        uses: redhat-actions/oc-new-app@v1
+        with:
+          app_name: ${{ env.APP_NAME }}
+          image: ${{ needs.dev-deployment.steps.image.outputs.image }}
+          namespace: ${{ env.OPENSHIFT_PROD }}
           port: ${{ env.APP_PORT }}
 
       - name: View application route
