@@ -86,7 +86,7 @@ jobs:
         echo "TAG=${GITHUB_SHA::7}" | tee -a $GITHUB_ENV
 
     - name: Create Image
-      run: podman build . --file Dockerfile --tag ${{ env.APP_NAME }}:${{ env.TAG }}
+      run: podman build . --file Dockerfile --tag ${{ env.REGISTRY }}/${{ env.APP_NAME }}:${{ env.TAG }}
 
     - name: Registry Autherisation
       run: podman login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.REGISTRY_PASSWORD }} quay.io 
