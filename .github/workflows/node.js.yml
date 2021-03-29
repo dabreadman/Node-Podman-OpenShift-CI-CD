@@ -136,37 +136,6 @@ jobs:
       SELECTOR: ${{ steps.deploy-and-expose.outputs.selector }}
 
     steps:
-      - name: Check if secrets exists
-        uses: actions/github-script@v3
-        with:
-          script: |
-            const secrets = {
-              REGISTRY_PASSWORD: `${{ env.REGISTRY_PASSWORD }}`,
-              OPENSHIFT_SERVER: `${{ env.OPENSHIFT_SERVER }}`,
-              OPENSHIFT_TOKEN: `${{ env.OPENSHIFT_TOKEN }}`,
-            };
-
-            const missingSecrets = Object.entries(secrets).filter(([ name, value ]) => {
-              if (value.length === 0) {
-                core.warning(`Secret "${name}" is not set`);
-                return true;
-              }
-              core.info(`✔️ Secret "${name}" is set`);
-              return false;
-
-            });
-
-            if (missingSecrets.length > 0) {
-              core.setFailed(`❌ At least one required secret is not set in the repository. \n` +
-                "You can add it using:\n" +
-                "GitHub UI: https://docs.github.com/en/actions/reference/encrypted-secrets#creating-encrypted-secrets-for-a-repository \n" +
-                "GitHub CLI: https://cli.github.com/manual/gh_secret_set \n" +
-                "Also, refer to https://github.com/redhat-actions/oc-login#getting-started-with-the-action-or-see-example");
-            }
-            else {
-              core.info(`✅ All the required secrets are set`);
-            }
-
       - name: Log in to OpenShift
         uses: redhat-actions/oc-login@v1
         with:
