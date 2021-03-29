@@ -12,7 +12,7 @@ env:
   # OPENSHIFT_TOKEN: ${{ secrets.OPENSHIFT_TOKEN }}
   # APP_PORT: 8080
   # OPENSHIFT_NAMESPACE: ""
-  APP_NAME: ""
+  APP_NAME: "dabreadman/covid_app"
   TAG: ""
 
 on:
@@ -27,12 +27,6 @@ jobs:
         working-directory: ./covid-vue-app
     steps:
       - uses: actions/checkout@v2
-      - name: Print env
-        run: |
-          echo $USERNAME
-          printenv
-        env:
-          USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
       - name: Docker Layer Caching
         uses: satackey/action-docker-layer-caching@v0.0.11
       - name: Determine app name
