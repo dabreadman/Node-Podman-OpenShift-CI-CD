@@ -120,15 +120,10 @@ jobs:
     - name: Create Image
       run: podman build . --file Dockerfile --tag ${{ env.APP_NAME }}:${{ env.TAG }}
 
-    # https://github.com/redhat-actions/push-to-registry#readme
+    - name: Registry Autherisation
+      run: podman login quay.io -u {{ secrets.DOCKERHUB_USERNAME}} -p {{ secrets.REGISTRY_PASSWORD }}
     - name: Push to registry
       run: podman push ${{ env.APP_NAME }}:${{ env.TAG }}
-
-    # The path the image was pushed to is now stored in ${{ steps.push-to-registry.outputs.registry-path }}
-
-    # oc-login works on all platforms, but oc must be installed first.
-    # The GitHub Ubuntu runner already includes oc.
-    # Otherwise, https://github.com/redhat-actions/oc-installer#readme is available.
 
     # https://github.com/redhat-actions/oc-login#readme
     - name: Log in to OpenShift
