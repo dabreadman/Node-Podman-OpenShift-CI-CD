@@ -47,12 +47,10 @@ env:
 
   # ⬇️ EDIT with the port your application should be accessible on.
   APP_PORT: 8080
-
-  # ⬇️ EDIT if you wish to set the kube context's namespace after login. Leave blank to use the default namespace.
-  OPENSHIFT_NAMESPACE: ""
+  OPENSHIFT_NAMESPACE: ${{ secrets.OPENSHIFT_NAMESPACE }} 
 
   # If you wish to manually provide the APP_NAME and TAG, set them here, otherwise they will be auto-detected.
-  APP_NAME: "quay.io/dabreadman/covid-app"
+  APP_NAME: "quay.io/dabreadman/covid_app"
   TAG: ""
 
 on:
