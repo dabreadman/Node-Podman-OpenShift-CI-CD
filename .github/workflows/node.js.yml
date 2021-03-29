@@ -30,8 +30,6 @@ jobs:
     environment: development
 
     outputs:
-      ROUTE: ${{ steps.deploy-and-expose.outputs.route }}
-      SELECTOR: ${{ steps.deploy-and-expose.outputs.selector }}
       IMAGE: ${{ steps.image.outputs.image }}
 
     steps:
@@ -106,18 +104,6 @@ jobs:
           namespace: ${{ env.OPENSHIFT_NAMESPACE }}
           port: ${{ env.APP_PORT }}
 
-      - name: View application route
-        run: |
-          [[ -n ${{ env.ROUTE }} ]] || (echo "Determining application route failed in previous step"; exit 1)
-          echo "======================== Your application is available at: ========================"
-          echo ${{ env.ROUTE }}
-          echo "==================================================================================="
-          echo
-          echo "Your app can be taken down with: \"oc delete all --selector='${{ env.SELECTOR }}'\""
-        env:
-          ROUTE: ${{ steps.deploy-and-expose.outputs.route }}
-          SELECTOR: ${{ steps.deploy-and-expose.outputs.selector }}
-
       - name: Pass image reference
         id: image
         run: echo "::set-output name=image::${{ env.REGISTRY }}/${{ env.APP_NAME }}:${{ env.TAG }}::"
@@ -130,10 +116,6 @@ jobs:
       run:
         working-directory: ./covid-vue-app
     environment: production
-
-    outputs:
-      ROUTE: ${{ steps.deploy-and-expose.outputs.route }}
-      SELECTOR: ${{ steps.deploy-and-expose.outputs.selector }}
 
     steps:
       - name: Log in to OpenShift
@@ -152,15 +134,3 @@ jobs:
           image: ${{ needs.dev-deployment.steps.image.outputs.image }}
           namespace: ${{ env.OPENSHIFT_PROD }}
           port: ${{ env.APP_PORT }}
-
-      - name: View application route
-        run: |
-          [[ -n ${{ env.ROUTE }} ]] || (echo "Determining application route failed in previous step"; exit 1)
-          echo "======================== Your application is available at: ========================"
-          echo ${{ env.ROUTE }}
-          echo "==================================================================================="
-          echo
-          echo "Your app can be taken down with: \"oc delete all --selector='${{ env.SELECTOR }}'\""
-        env:
-          ROUTE: ${{ steps.deploy-and-expose.outputs.route }}
-          SELECTOR: ${{ steps.deploy-and-expose.outputs.selector }}
