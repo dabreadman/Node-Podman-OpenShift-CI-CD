@@ -119,7 +119,7 @@ jobs:
 
     steps:
       - name: Download image
-        run: podman pull ${{ needs.dev-deployment.outputs.image }}
+        run: docker pull ${{ needs.dev-deployment.outputs.image }}
       - name: Log in to OpenShift
         uses: redhat-actions/oc-login@v1
         with:
