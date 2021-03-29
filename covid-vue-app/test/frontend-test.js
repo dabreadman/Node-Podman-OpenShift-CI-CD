@@ -23,6 +23,10 @@ async function testTitle() {
         await driver.findElement(By.className('display-4'))
         .getText().then(textValue => {
           assert.equal('Coronavirus total cases', textValue);
+        })
+        .catch(err => {
+            console.log(error);
+            numberOfErrors = numberOfErrors + 1;
         });
         numberOfTestsCompleted = numberOfTestsCompleted + 1;
         console.log("RUNNING TEST STEP " + numberOfTestsCompleted  + ": Checking the main title of the application is still valid..");
@@ -41,6 +45,10 @@ async function testNumbersForActiveCases() {
             textValue = textValue.replace(/[^0-9]/g, '');
           assert.notEqual(null, textValue);
           assert.notEqual("0", textValue);
+        })
+        .catch(err => {
+            console.log(error);
+            numberOfErrors = numberOfErrors + 1;
         });
 
         //The below function gets the xPath for the "Mild Condition" value
@@ -50,6 +58,10 @@ async function testNumbersForActiveCases() {
             textValue = textValue.replace(/[^0-9]/g, '');
           assert.notEqual(null, textValue);
           assert.notEqual("0", textValue);
+        })
+        .catch(err => {
+            console.log(error);
+            numberOfErrors = numberOfErrors + 1;
         });
 
         //The below function gets the xPath for the "Mild Condition" value
@@ -59,6 +71,10 @@ async function testNumbersForActiveCases() {
             textValue = textValue.replace(/[^0-9]/g, '');
           assert.notEqual(null, textValue);
           assert.notEqual("0", textValue);
+        })
+        .catch(err => {
+            console.log(error);
+            numberOfErrors = numberOfErrors + 1;
         });
 
         numberOfTestsCompleted = numberOfTestsCompleted + 1;
@@ -78,6 +94,10 @@ async function testNumbersForClosedCases() {
             textValue = textValue.replace(/[^0-9]/g, '');
           assert.notEqual(null, textValue);
           assert.notEqual("0", textValue);
+        })
+        .catch(err => {
+            console.log(error);
+            numberOfErrors = numberOfErrors + 1;
         });
 
         //The below function gets the xPath for the "Mild Condition" value
@@ -87,6 +107,10 @@ async function testNumbersForClosedCases() {
             textValue = textValue.replace(/[^0-9]/g, '');
           assert.notEqual(null, textValue);
           assert.notEqual("0", textValue);
+        })
+        .catch(err => {
+            console.log(error);
+            numberOfErrors = numberOfErrors + 1;
         });
 
         //The below function gets the xPath for the "Mild Condition" value
@@ -96,6 +120,10 @@ async function testNumbersForClosedCases() {
             textValue = textValue.replace(/[^0-9]/g, '');
           assert.notEqual(null, textValue);
           assert.notEqual("0", textValue);
+        })
+        .catch(err => {
+            console.log(error);
+            numberOfErrors = numberOfErrors + 1;
         });
 
         numberOfTestsCompleted = numberOfTestsCompleted + 1;
