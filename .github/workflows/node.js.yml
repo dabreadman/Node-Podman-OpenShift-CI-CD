@@ -106,7 +106,7 @@ jobs:
           
       - name: Pass image reference
         id: image
-        run: echo "::set-output name=image::${{ env.REGISTRY }}/${{ env.APP_NAME }}:${{ env.TAG }}::"
+        run: echo "::set-output name=image::${{ env.REGISTRY }}/${{ env.APP_NAME }}:${{ env.TAG }}"
 
   prod-deployment:
     name: Deploy to OpenShift Production
