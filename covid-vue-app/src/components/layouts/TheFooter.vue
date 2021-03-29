@@ -24,7 +24,13 @@
 <script>
 export default {
   data: () => ({
-    links: [{ id: 1, icon: "mdi-github", url: "https://github.com" }],
+    links: [
+      {
+        id: 1,
+        icon: "mdi-github",
+        url: "https://github.com/dabreadman/Node-Podman-OpenShift-CI-CD",
+      },
+    ],
   }),
 };
 </script>
