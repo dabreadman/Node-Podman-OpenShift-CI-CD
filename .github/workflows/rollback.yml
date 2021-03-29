@@ -1,0 +1,49 @@
+name: Rollback
+
+env:
+  # Using Quay.io
+  REGISTRY: quay.io
+  REGISTRY_USERNAME: dabreadman
+
+  # OpenShift Token
+  OPENSHIFT_SERVER: ${{ secrets.OPENSHIFT_SERVER }}
+  OPENSHIFT_TOKEN: ${{ secrets.OPENSHIFT_TOKEN }}
+  APP_PORT: 8080
+  OPENSHIFT_PROD: ${{ secrets.OPENSHIFT_PROD }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      APP_NAME:
+        description: Application name for image
+        required: true
+      TAG:
+        description: Tag version of image
+        required: true
+
+jobs:
+  prod-rollback:
+    name: Deploy to OpenShift Production
+    needs: [dev-deployment]
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+      - name: Download image
+        run: podman pull ${{ env.REGISTRY }}/${{ env.REGISTRY_USERNAME }}/${{ github.event.input.APP_NAME }}:${{ github.event.input.TAG }}
+      - name: Log in to OpenShift
+        uses: redhat-actions/oc-login@v1
+        with:
+          openshift_server_url: ${{ env.OPENSHIFT_SERVER }}
+          openshift_token: ${{ env.OPENSHIFT_TOKEN }}
+          insecure_skip_tls_verify: true
+          namespace: ${{ env.OPENSHIFT_PROD }}
+
+      - name: Create and expose app
+        id: deploy-and-expose
+        uses: redhat-actions/oc-new-app@v1
+        with:
+          app_name: ${{ env.APP_NAME }}
+          image: ${{ needs.dev-deployment.outputs.image }}
+          namespace: ${{ env.OPENSHIFT_PROD }}
+          port: ${{ env.APP_PORT }}
