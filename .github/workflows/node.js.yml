@@ -19,7 +19,7 @@ env:
   OPENSHIFT_NAMESPACE: "dabreadman-code"
 
   # If you wish to manually provide the APP_NAME and TAG, set them here, otherwise they will be auto-detected.
-  APP_NAME: "covid_app"
+  APP_NAME: "covid-app"
   TAG: ""
 
 
