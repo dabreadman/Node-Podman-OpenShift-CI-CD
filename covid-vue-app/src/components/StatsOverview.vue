@@ -2,7 +2,7 @@
   <v-container>
     <v-row>
       <v-col align="center">
-        <h1 class="display-4">Coronavirus total cases testgstsd</h1>
+        <h1 class="display-4">Testing Title</h1>
         <h3 class="display-2 py-6">
           Total Cases : <span class="orange--text">{{ stats.cases }}</span>
         </h3>
