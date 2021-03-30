@@ -145,19 +145,12 @@ async function testNumbersForClosedCases() {
 
 
 async function testGetDataButton() {
-    try{
         //The below function gets the xPath for the "Get Data" button
         await driver.findElement(By.xpath("//*[@id='app']/div/div[2]/div[2]/div[2]/div/div[2]/div/button")).click();
         numberOfTestsCompleted = numberOfTestsCompleted + 1;
         /* eslint-disable no-console */
         console.log("RUNNING TEST STEP " + numberOfTestsCompleted  + ": Clicking the `GET DATA` button..");
         /* eslint-enable no-console */
-    }catch(error){
-        /* eslint-disable no-console */
-        console.log(error);
-        /* eslint-enable no-console */
-        numberOfErrors = numberOfErrors + 1;
-    }
 }
 
 async function runAllTests() {
