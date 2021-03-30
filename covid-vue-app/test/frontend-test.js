@@ -1,5 +1,5 @@
-const {Builder, By} = require('selenium-webdriver');
-const assert = require('assert');
+const {Builder, By} = require("selenium-webdriver");
+const assert = require("assert");
 
 const driver = new Builder().forBrowser("firefox").build();
 var numberOfTestsCompleted = 0;
@@ -21,12 +21,12 @@ async function openTheApp() {
 
 async function testTitle() {
     try{
-        await driver.findElement(By.className('display-4'))
-        .getText().then(textValue => {
-          assert.equal('Coronavirus total cases', textValue);
+        await driver.findElement(By.className("display-4"))
+        .getText().then( (textValue) => {
+          assert.equal("Coronavirus total cases", textValue);
         })
-        .catch(err => {
-            console.log(error);
+        .catch( (err) => {
+            console.log(err);
             numberOfErrors = numberOfErrors + 1;
         });
         numberOfTestsCompleted = numberOfTestsCompleted + 1;
@@ -41,40 +41,40 @@ async function testNumbersForActiveCases() {
     try{
         //The below function gets the xPath for the "Currently Affected" value
         await driver.findElement(By.xpath('//*[@id="app"]/div/div[2]/div[2]/div[1]/div/div[2]/div/p[1]'))
-        .getText().then(textValue => {
+        .getText().then( (textValue) => {
             //The code below strips the input, and gets only the numbers (i.e. number of cases) and gets rid of the characters.
             textValue = textValue.replace(/[^0-9]/g, '');
           assert.notEqual(null, textValue);
           assert.notEqual("0", textValue);
         })
-        .catch(err => {
-            console.log(error);
+        .catch( (err) => {
+            console.log(err);
             numberOfErrors = numberOfErrors + 1;
         });
 
         //The below function gets the xPath for the "Mild Condition" value
         await driver.findElement(By.xpath('//*[@id="app"]/div/div[2]/div[2]/div[1]/div/div[2]/div/p[2]'))
-        .getText().then(textValue => {
+        .getText().then( (textValue) => {
             //The code below strips the input, and gets only the numbers (i.e. number of cases) and gets rid of the characters.
             textValue = textValue.replace(/[^0-9]/g, '');
           assert.notEqual(null, textValue);
           assert.notEqual("0", textValue);
         })
-        .catch(err => {
-            console.log(error);
+        .catch( (err) => {
+            console.log(err);
             numberOfErrors = numberOfErrors + 1;
         });
 
         //The below function gets the xPath for the "Mild Condition" value
         await driver.findElement(By.xpath('//*[@id="app"]/div/div[2]/div[2]/div[1]/div/div[2]/div/p[3]'))
-        .getText().then(textValue => {
+        .getText().then( (textValue) => {
             //The code below strips the input, and gets only the numbers (i.e. number of cases) and gets rid of the characters.
             textValue = textValue.replace(/[^0-9]/g, '');
           assert.notEqual(null, textValue);
           assert.notEqual("0", textValue);
         })
-        .catch(err => {
-            console.log(error);
+        .catch( (err) => {
+            console.log(err);
             numberOfErrors = numberOfErrors + 1;
         });
 
@@ -90,40 +90,40 @@ async function testNumbersForClosedCases() {
     try{
         //The below function gets the xPath for the "Currently Affected" value
         await driver.findElement(By.xpath('//*[@id="app"]/div/div[2]/div[2]/div[2]/div/div[2]/div/p[1]'))
-        .getText().then(textValue => {
+        .getText().then( (textValue)  => {
             //The code below strips the input, and gets only the numbers (i.e. number of cases) and gets rid of the characters.
             textValue = textValue.replace(/[^0-9]/g, '');
           assert.notEqual(null, textValue);
           assert.notEqual("0", textValue);
         })
-        .catch(err => {
-            console.log(error);
+        .catch( (err) => {
+            console.log(err);
             numberOfErrors = numberOfErrors + 1;
         });
 
         //The below function gets the xPath for the "Mild Condition" value
         await driver.findElement(By.xpath('//*[@id="app"]/div/div[2]/div[2]/div[2]/div/div[2]/div/p[2]'))
-        .getText().then(textValue => {
+        .getText().then( (textValue)  => {
             //The code below strips the input, and gets only the numbers (i.e. number of cases) and gets rid of the characters.
             textValue = textValue.replace(/[^0-9]/g, '');
           assert.notEqual(null, textValue);
           assert.notEqual("0", textValue);
         })
-        .catch(err => {
-            console.log(error);
+        .catch( (err) => {
+            console.log(err);
             numberOfErrors = numberOfErrors + 1;
         });
 
         //The below function gets the xPath for the "Mild Condition" value
         await driver.findElement(By.xpath('//*[@id="app"]/div/div[2]/div[2]/div[2]/div/div[2]/div/p[3]'))
-        .getText().then(textValue => {
+        .getText().then( (textValue)  => {
             //The code below strips the input, and gets only the numbers (i.e. number of cases) and gets rid of the characters.
             textValue = textValue.replace(/[^0-9]/g, '');
           assert.notEqual(null, textValue);
           assert.notEqual("0", textValue);
         })
-        .catch(err => {
-            console.log(error);
+        .catch( (err) => {
+            console.log(err);
             numberOfErrors = numberOfErrors + 1;
         });
 
