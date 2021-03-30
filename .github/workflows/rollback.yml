@@ -24,8 +24,8 @@ env:
   OPENSHIFT_NAMESPACE: ${{ secrets.OPENSHIFT_PROD }}
   APP_PORT: 8080
 
-  APP_NAME: ${{ github.event.input.app_name }}
-  TAG: ${{ github.event.input.tag }}
+  APP_NAME: ${{ github.event.inputs.app_name }}
+  TAG: ${{ github.event.inputs.tag }}
   
 jobs:
   rollback:
