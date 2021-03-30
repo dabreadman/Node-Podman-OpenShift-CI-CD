@@ -40,12 +40,11 @@ async function testTitle() {
 }
 
 async function testNumbersForActiveCases() {
-    try{
         //The below function gets the xPath for the "Currently Affected" value
         await driver.findElement(By.xpath("//*[@id='app']/div/div[2]/div[2]/div[1]/div/div[2]/div/p[1]"))
         .getText().then( (textValue) => {
             //The code below strips the input, and gets only the numbers (i.e. number of cases) and gets rid of the characters.
-            textValue = textValue.replace(/[^0-9]/g, '');
+            textValue = textValue.replace(/[^0-9]/g, "");
           assert.notEqual(null, textValue);
           assert.notEqual("0", textValue);
         })
@@ -60,7 +59,7 @@ async function testNumbersForActiveCases() {
         await driver.findElement(By.xpath("//*[@id='app']/div/div[2]/div[2]/div[1]/div/div[2]/div/p[2]"))
         .getText().then( (textValue) => {
             //The code below strips the input, and gets only the numbers (i.e. number of cases) and gets rid of the characters.
-            textValue = textValue.replace(/[^0-9]/g, '');
+            textValue = textValue.replace(/[^0-9]/g, "");
           assert.notEqual(null, textValue);
           assert.notEqual("0", textValue);
         })
@@ -75,7 +74,7 @@ async function testNumbersForActiveCases() {
         await driver.findElement(By.xpath("//*[@id='app']/div/div[2]/div[2]/div[1]/div/div[2]/div/p[3]"))
         .getText().then( (textValue) => {
             //The code below strips the input, and gets only the numbers (i.e. number of cases) and gets rid of the characters.
-            textValue = textValue.replace(/[^0-9]/g, '');
+            textValue = textValue.replace(/[^0-9]/g, "");
           assert.notEqual(null, textValue);
           assert.notEqual("0", textValue);
         })
@@ -90,21 +89,14 @@ async function testNumbersForActiveCases() {
         /* eslint-disable no-console */
         console.log("RUNNING TEST STEP " + numberOfTestsCompleted  + ": Checking the Active Cases component's values..");
         /* eslint-enable no-console */
-    }catch(error){
-        /* eslint-disable no-console */
-        console.log(error);
-        /* eslint-enable no-console */
-        numberOfErrors = numberOfErrors + 1;
-    }
 }
 
 async function testNumbersForClosedCases() {
-    try{
         //The below function gets the xPath for the "Currently Affected" value
         await driver.findElement(By.xpath("//*[@id='app']/div/div[2]/div[2]/div[2]/div/div[2]/div/p[1]"))
         .getText().then( (textValue)  => {
             //The code below strips the input, and gets only the numbers (i.e. number of cases) and gets rid of the characters.
-            textValue = textValue.replace(/[^0-9]/g, '');
+            textValue = textValue.replace(/[^0-9]/g, "");
           assert.notEqual(null, textValue);
           assert.notEqual("0", textValue);
         })
@@ -119,7 +111,7 @@ async function testNumbersForClosedCases() {
         await driver.findElement(By.xpath("//*[@id='app']/div/div[2]/div[2]/div[2]/div/div[2]/div/p[2]"))
         .getText().then( (textValue)  => {
             //The code below strips the input, and gets only the numbers (i.e. number of cases) and gets rid of the characters.
-            textValue = textValue.replace(/[^0-9]/g, '');
+            textValue = textValue.replace(/[^0-9]/g, "");
           assert.notEqual(null, textValue);
           assert.notEqual("0", textValue);
         })
@@ -134,7 +126,7 @@ async function testNumbersForClosedCases() {
         await driver.findElement(By.xpath("//*[@id='app']/div/div[2]/div[2]/div[2]/div/div[2]/div/p[3]"))
         .getText().then( (textValue)  => {
             //The code below strips the input, and gets only the numbers (i.e. number of cases) and gets rid of the characters.
-            textValue = textValue.replace(/[^0-9]/g, '');
+            textValue = textValue.replace(/[^0-9]/g, "");
           assert.notEqual(null, textValue);
           assert.notEqual("0", textValue);
         })
@@ -149,12 +141,6 @@ async function testNumbersForClosedCases() {
         /* eslint-disable no-console */
         console.log("RUNNING TEST STEP " + numberOfTestsCompleted  + ": Checking the Closed Cases component's values..");
         /* eslint-enable no-console */
-    }catch(error){
-        /* eslint-disable no-console */
-        console.log(error);
-        /* eslint-enable no-console */
-        numberOfErrors = numberOfErrors + 1;
-    }
 }
 
 
