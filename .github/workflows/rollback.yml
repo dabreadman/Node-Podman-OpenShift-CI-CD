@@ -1,6 +1,7 @@
 name: Rollback
 
 on:
+  push:
   workflow_dispatch:
     inputs:
       app_name:
@@ -29,7 +30,7 @@ jobs:
 
     steps:
       - name: Download image
-        run: podman pull ${{ env.REGISTRY }}/${{ env.REGISTRY_USERNAME }}/${{ github.event.input.APP_NAME }}:${{ github.event.input.TAG }}
+        run: podman pull ${{ env.REGISTRY }}/${{ env.REGISTRY_USERNAME }}/${{ github.event.input.app_name }}:${{ github.event.input.tag }}
       - name: Log in to OpenShift
         uses: redhat-actions/oc-login@v1
         with:
