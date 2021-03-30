@@ -26,9 +26,7 @@ env:
 
   APP_NAME: ${{ github.event.input.app_name }}
   TAG: ${{ github.event.input.tag }}
-  IMAGE: $${{ env.REGISTRY }}/${{ env.REGISTRY_USERNAME }}/${{ env.APP_NAME }}:${{ env.TAG }}
   
-
 jobs:
   rollback:
     name: Rollback OpenShift to specific version
@@ -37,7 +35,7 @@ jobs:
 
     steps:
       - name: Download image
-        run: podman pull ${{ env.IMAGE }}
+        run: podman pull $${{ env.REGISTRY }}/${{ env.REGISTRY_USERNAME }}/${{ env.APP_NAME }}:${{ env.TAG }}
       - name: Log in to OpenShift
         uses: redhat-actions/oc-login@v1
         with:
@@ -51,6 +49,6 @@ jobs:
         uses: redhat-actions/oc-new-app@v1
         with:
           app_name: ${{ env.APP_NAME }}
-          image: ${{ env.IMAGE }}
+          image: $${{ env.REGISTRY }}/${{ env.REGISTRY_USERNAME }}/${{ env.APP_NAME }}:${{ env.TAG }}
           namespace: ${{ env.OPENSHIFT_NAMESPACE }}
           port: ${{ env.APP_PORT }}
