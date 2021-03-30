@@ -81,7 +81,7 @@ jobs:
       - name: Docker Layer Caching
         uses: satackey/action-docker-layer-caching@v0.0.11
 
-      - name: Create Image
+      - name: Build image, run lint/test
         run: podman build . --file Dockerfile --tag ${{ env.REGISTRY }}/${{ env.REGISTRY_USERNAME }}/${{ env.APP_NAME }}:${{ env.TAG }}
 
       - name: Registry Autherisation

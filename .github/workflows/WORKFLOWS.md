@@ -119,10 +119,10 @@ Then, we start with the steps, most of which are from the template mentioned abo
           uses: satackey/action-docker-layer-caching@v0.0.11
     ```
 
-1. We create image, run tests (we moved all tests inside docker image), and push to image registry.
+1. We build image, run tests (we moved all tests inside docker image), and push to image registry.
 
     ```yaml
-        - name: Create Image
+        - name: Build image, run lint/test
           run: podman build . --file Dockerfile --tag ${{ env.REGISTRY }}/${{ env.REGISTRY_USERNAME }}/${{ env.APP_NAME }}:${{ env.TAG }}
 
         - name: Registry Autherisation
