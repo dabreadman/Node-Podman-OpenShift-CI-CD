@@ -206,7 +206,7 @@ on:
 ```
 
 Over here, we use using [`GitHub Action Secrets`](https://docs.github.com/en/actions/reference/encrypted-secrets), and the inputs from the `workflow_dispatch`.  
-We can access the inputs by `${{ github.event.input.INPUT_NAME }}`.  
+We can access the inputs by `${{ github.event.inputs.INPUT_NAME }}`.  
 
 We set the environment variables here, which keeps the workflow clean and easier to maintain.
 
@@ -222,8 +222,8 @@ env:
   OPENSHIFT_NAMESPACE: ${{ secrets.OPENSHIFT_PROD }}
   APP_PORT: 8080
 
-  APP_NAME: ${{ github.event.input.app_name }}
-  TAG: ${{ github.event.input.tag }}
+  APP_NAME: ${{ github.event.inputs.app_name }}
+  TAG: ${{ github.event.inputs.tag }}
   IMAGE: $${{ env.REGISTRY }}/${{ env.REGISTRY_USERNAME }}/${{ env.APP_NAME }}:${{ env.TAG }}
 ```
 
