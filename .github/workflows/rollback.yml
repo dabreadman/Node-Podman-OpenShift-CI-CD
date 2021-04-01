@@ -31,11 +31,10 @@ jobs:
   rollback:
     name: Rollback OpenShift to specific version
     runs-on: ubuntu-latest
-    environment: production
 
     steps:
       - name: Download image
-        run: podman pull $${{ env.REGISTRY }}/${{ env.REGISTRY_USERNAME }}/${{ env.APP_NAME }}:${{ env.TAG }}
+        run: podman pull ${{ env.REGISTRY }}/${{ env.REGISTRY_USERNAME }}/${{ env.APP_NAME }}:${{ env.TAG }}
       - name: Log in to OpenShift
         uses: redhat-actions/oc-login@v1
         with:
