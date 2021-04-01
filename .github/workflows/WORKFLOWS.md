@@ -224,7 +224,6 @@ env:
 
   APP_NAME: ${{ github.event.inputs.app_name }}
   TAG: ${{ github.event.inputs.tag }}
-  IMAGE: $${{ env.REGISTRY }}/${{ env.REGISTRY_USERNAME }}/${{ env.APP_NAME }}:${{ env.TAG }}
 ```
 
 Then we define the `jobs` (only 1 in this workflow) [`rollback`], and the environment.  
@@ -234,7 +233,6 @@ jobs:
   rollback:
     name: Rollback OpenShift to specific version
     runs-on: ubuntu-latest
-    environment: production
 ```
 
 We then define the `steps`.  
@@ -244,7 +242,7 @@ We then define the `steps`.
     ```yaml
         steps:
           - name: Download image
-            run: podman pull ${{ env.IMAGE }}
+            run: podman pull ${{ env.REGISTRY }}/${{ env.REGISTRY_USERNAME }}/${{ env.APP_NAME }}:${{ env.TAG }}
           - name: Log in to OpenShift
             uses: redhat-actions/oc-login@v1
             with:
@@ -262,7 +260,7 @@ We then define the `steps`.
             uses: redhat-actions/oc-new-app@v1
             with:
               app_name: ${{ env.APP_NAME }}
-              image: ${{ env.IMAGE }}
+              image: ${{ env.REGISTRY }}/${{ env.REGISTRY_USERNAME }}/${{ env.APP_NAME }}:${{ env.TAG }}
               namespace: ${{ env.OPENSHIFT_NAMESPACE }}
               port: ${{ env.APP_PORT }}
     ```
