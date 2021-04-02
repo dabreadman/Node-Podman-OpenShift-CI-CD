@@ -12,13 +12,11 @@ import Footer from "./components/layouts/TheFooter";
 import NavBar from "./components/layouts/TheNavBar";
 export default {
   name: "App",
-
   components: {
     NavBar,
     Footer,
     // Home,
   },
-
   data: () => ({
     //
   }),
