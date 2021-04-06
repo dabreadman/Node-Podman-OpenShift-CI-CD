@@ -7,6 +7,15 @@ var app = express();
 app.use(history());
 
 app.use(serveStatic(__dirname + "/dist"));
+
+app.get("/", (req, res) => {
+    res.status(200).send("This is the home page!");
+  });
+
+app.get("/stats", (req, res) => {
+    res.status(200).send("This is the stats page!");
+  });
+
 var port = process.env.PORT || 5000;
-app.listen(port);
+module.exports = app.listen(port);
 // console.log("server started " + port);
