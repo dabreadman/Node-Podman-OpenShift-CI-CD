@@ -262,7 +262,7 @@ export default {
           /* eslint-disable no-console */
           console.log(e);
           /* eslint-enable no-console */
-        })
+        });
     },
     getDataforIndia() {
       this.items[1].deaths = "Loading...";
@@ -308,7 +308,7 @@ export default {
           /* eslint-disable no-console */
           console.log(e);
           /* eslint-enable no-console */
-        })
+        });
     },
     getDataforBrazil() {
       this.items[2].deaths = "Loading...";
@@ -354,7 +354,7 @@ export default {
           /* eslint-disable no-console */
           console.log(e);
           /* eslint-enable no-console */
-        })
+        });
     },
     getDataforRussia() {
       this.items[3].deaths = "Loading...";
@@ -400,7 +400,7 @@ export default {
           /* eslint-disable no-console */
           console.log(e);
           /* eslint-enable no-console */
-        })
+        });
     },
     getDataforUK() {
       this.items[4].deaths = "Loading...";
@@ -446,7 +446,7 @@ export default {
           /* eslint-disable no-console */
           console.log(e);
           /* eslint-enable no-console */
-        })
+        });
     },
     getDataforFrance() {
       this.items[5].deaths = "Loading...";
@@ -492,7 +492,7 @@ export default {
           /* eslint-disable no-console */
           console.log(e);
           /* eslint-enable no-console */
-        })
+        });
     },
     getDataforSpain() {
       this.items[6].deaths = "Loading...";
@@ -538,11 +538,11 @@ export default {
           /* eslint-disable no-console */
           console.log(e);
           /* eslint-enable no-console */
-        })
+        });
     },
     getDataforItaly() {
       this.items[7].deaths = "Loading...";
-      this.items[7].recovered = "Loading...;"
+      this.items[7].recovered = "Loading...;";
       this.items[7].confirmed = "Loading...";
       axios
         .get(
@@ -584,7 +584,7 @@ export default {
           /* eslint-disable no-console */
           console.log(e);
           /* eslint-enable no-console */
-        })
+        });
     },
     getDataforTurkey() {
       this.items[8].deaths = "Loading...";
@@ -630,7 +630,7 @@ export default {
           /* eslint-disable no-console */
           console.log(e);
           /* eslint-enable no-console */
-        })
+        });
     },
     getDataforIreland() {
       this.items[9].deaths = "Loading...";
@@ -676,7 +676,7 @@ export default {
           /* eslint-disable no-console */
           console.log(e);
           /* eslint-enable no-console */
-        })
+        });
     },
     nextPage() {
       if (this.page + 1 <= this.numberOfPages) {
