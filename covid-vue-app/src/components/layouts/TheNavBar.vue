@@ -1,13 +1,13 @@
 <template lang="html">
   <v-container fluid>
-    <v-app-bar color="#fafaff" absolute flat>
+    <v-app-bar color="blue" absolute flat>
       <v-row class="nav-padding-primary" v-if="$vuetify.breakpoint.mdAndUp">
         <v-col class="col-3">
-          <h1>Group 39 Project</h1>
+          <a href="/"><h1 style="color:white; text-decoration: none; text-shadow: 3px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;" >COVID-19 Tracker</h1></a>
         </v-col>
         <v-col align="center" class="col-6">
-          <v-btn text to="/stats" class="mx-12">Stats</v-btn>
-          <v-btn text to="/" class="mx-12">Home</v-btn>
+          <v-btn text to="/" class="mx-12" style="color:white; margin-top: 5px;">Home</v-btn>
+          <v-btn text to="/stats" class="mx-12" style="color:white; margin-top: 5px;">Statistics</v-btn>
         </v-col>
       </v-row>
       <v-app-bar-nav-icon
@@ -49,4 +49,6 @@ export default {
 };
 </script>
 
-<style lang="css" scoped></style>
+<style lang="css" scoped>
+a { text-decoration: none; }
+</style>

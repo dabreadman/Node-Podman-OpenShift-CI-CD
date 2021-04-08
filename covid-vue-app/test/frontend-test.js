@@ -4,10 +4,10 @@ const assert = require("assert");
 const driver = new Builder().forBrowser("firefox").build();
 var numberOfTestsCompleted = 0;
 var numberOfErrors = 0;
-const numberOfTests = 5;
+const numberOfTests = 7;
 
 
-async function openTheApp() {
+async function gotoHomePage() {
         //The driver goes to http://localhost:8080/
         await driver.get("http://127.0.0.1:8080");
         numberOfTestsCompleted = numberOfTestsCompleted + 1;
@@ -17,9 +17,9 @@ async function openTheApp() {
 
 async function testTitle() {
     try{
-        await driver.findElement(By.className("display-4"))
+        await driver.findElement(By.id("theTitle"))
         .getText().then( (textValue) => {
-          assert.equal("Coronavirus total cases", textValue);
+          assert.notEqual(null, textValue);
         })
         .catch( (err) => {
             /* eslint-disable no-console */
@@ -41,7 +41,7 @@ async function testTitle() {
 
 async function testNumbersForActiveCases() {
         //The below function gets the xPath for the "Currently Affected" value
-        await driver.findElement(By.xpath("//*[@id='app']/div/div[2]/div[2]/div[1]/div/div[2]/div/p[1]"))
+        await driver.findElement(By.xpath("//*[@id='app']/div/div[2]/div[2]/div[1]/div/div/div/p[1]"))
         .getText().then( (textValue) => {
             //The code below strips the input, and gets only the numbers (i.e. number of cases) and gets rid of the characters.
             textValue = textValue.replace(/[^0-9]/g, "");
@@ -55,8 +55,8 @@ async function testNumbersForActiveCases() {
             numberOfErrors = numberOfErrors + 1;
         });
 
-        //The below function gets the xPath for the "Mild Condition" value
-        await driver.findElement(By.xpath("//*[@id='app']/div/div[2]/div[2]/div[1]/div/div[2]/div/p[2]"))
+        //The below function gets the xPath for the "Last Checked" value
+        await driver.findElement(By.xpath("//*[@id='app']/div/div[2]/div[2]/div[1]/div/div/div/p[2]"))
         .getText().then( (textValue) => {
             //The code below strips the input, and gets only the numbers (i.e. number of cases) and gets rid of the characters.
             textValue = textValue.replace(/[^0-9]/g, "");
@@ -70,8 +70,8 @@ async function testNumbersForActiveCases() {
             numberOfErrors = numberOfErrors + 1;
         });
 
-        //The below function gets the xPath for the "Mild Condition" value
-        await driver.findElement(By.xpath("//*[@id='app']/div/div[2]/div[2]/div[1]/div/div[2]/div/p[3]"))
+        //The below function gets the xPath for the "Last Reported" value
+        await driver.findElement(By.xpath("//*[@id='app']/div/div[2]/div[2]/div[1]/div/div/div/p[3]"))
         .getText().then( (textValue) => {
             //The code below strips the input, and gets only the numbers (i.e. number of cases) and gets rid of the characters.
             textValue = textValue.replace(/[^0-9]/g, "");
@@ -92,8 +92,8 @@ async function testNumbersForActiveCases() {
 }
 
 async function testNumbersForClosedCases() {
-        //The below function gets the xPath for the "Currently Affected" value
-        await driver.findElement(By.xpath("//*[@id='app']/div/div[2]/div[2]/div[2]/div/div[2]/div/p[1]"))
+        //The below function gets the xPath for the "Closed Cases" value
+        await driver.findElement(By.xpath("//*[@id='app']/div/div[2]/div[2]/div[2]/div/div/div/p[1]"))
         .getText().then( (textValue)  => {
             //The code below strips the input, and gets only the numbers (i.e. number of cases) and gets rid of the characters.
             textValue = textValue.replace(/[^0-9]/g, "");
@@ -107,8 +107,8 @@ async function testNumbersForClosedCases() {
             numberOfErrors = numberOfErrors + 1;
         });
 
-        //The below function gets the xPath for the "Mild Condition" value
-        await driver.findElement(By.xpath("//*[@id='app']/div/div[2]/div[2]/div[2]/div/div[2]/div/p[2]"))
+        //The below function gets the xPath for the "Recovered" value
+        await driver.findElement(By.xpath("//*[@id='app']/div/div[2]/div[2]/div[2]/div/div/div/p[2]"))
         .getText().then( (textValue)  => {
             //The code below strips the input, and gets only the numbers (i.e. number of cases) and gets rid of the characters.
             textValue = textValue.replace(/[^0-9]/g, "");
@@ -122,8 +122,8 @@ async function testNumbersForClosedCases() {
             numberOfErrors = numberOfErrors + 1;
         });
 
-        //The below function gets the xPath for the "Mild Condition" value
-        await driver.findElement(By.xpath("//*[@id='app']/div/div[2]/div[2]/div[2]/div/div[2]/div/p[3]"))
+        //The below function gets the xPath for the "Deaths" value
+        await driver.findElement(By.xpath("//*[@id='app']/div/div[2]/div[2]/div[2]/div/div/div/p[3]"))
         .getText().then( (textValue)  => {
             //The code below strips the input, and gets only the numbers (i.e. number of cases) and gets rid of the characters.
             textValue = textValue.replace(/[^0-9]/g, "");
@@ -146,11 +146,30 @@ async function testNumbersForClosedCases() {
 
 async function testGetDataButton() {
         //The below function gets the xPath for the "Get Data" button
-        await driver.findElement(By.xpath("//*[@id='app']/div/div[2]/div[2]/div[2]/div/div[2]/div/button")).click();
+        await driver.findElement(By.xpath("//*[@id='app']/div/div[2]/div[2]/div[1]/div/div/div/button")).click();
+        await driver.findElement(By.xpath("//*[@id='app']/div/div[2]/div[2]/div[2]/div/div/div/button")).click();
         numberOfTestsCompleted = numberOfTestsCompleted + 1;
         /* eslint-disable no-console */
         console.log("RUNNING TEST STEP " + numberOfTestsCompleted  + ": Clicking the `GET DATA` button..");
         /* eslint-enable no-console */
+}
+
+async function gotoStatsPage() {
+    //The driver goes to http://localhost:8080/
+    await driver.get("http://127.0.0.1:8080/stats");
+    numberOfTestsCompleted = numberOfTestsCompleted + 1;
+    /* eslint-disable no-console */
+    console.log("RUNNING TEST STEP " + numberOfTestsCompleted + ": Opening the Application at Port 8080..");
+}
+
+async function testStatsButtons() {
+    //The below function gets the xPath for the "Render Latest Information" button
+    await driver.findElement(By.xpath("//*[@id='app']/div/div[2]/div[1]/button")).click();
+    await driver.findElement(By.xpath("//*[@id='app']/div/div[2]/div[1]/div/div")).click();
+    numberOfTestsCompleted = numberOfTestsCompleted + 1;
+    /* eslint-disable no-console */
+    console.log("RUNNING TEST STEP " + numberOfTestsCompleted  + ": Clicking the `GET DATA` button..");
+    /* eslint-enable no-console */
 }
 
 async function runAllTests() {
@@ -159,7 +178,7 @@ async function runAllTests() {
         console.log("TOTAL NUMBER OF TESTS: " + numberOfTests);
         /* eslint-enable no-console */
         //Open the App using Firefox, at Port 8080
-        await openTheApp();
+        await gotoHomePage();
 
         //Make sure the main title of the application has not been damaged
         await testTitle();
@@ -172,6 +191,12 @@ async function runAllTests() {
 
         //Test the Get Data Button
         await testGetDataButton();
+
+        //Go to statistics page
+        await gotoStatsPage();
+
+        //Test buttons on the statistics page
+        await testStatsButtons();
 
         //We are done testing!
         await driver.close();
