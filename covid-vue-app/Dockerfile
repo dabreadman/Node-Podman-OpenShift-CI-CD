@@ -1,5 +1,5 @@
 # Install dev dependencies stage
-FROM node:latest as application_modules
+FROM node:15-alpine as application_modules
 
 COPY . . 
 
@@ -8,7 +8,7 @@ RUN npm install
 RUN npm test && npm run lint && npm run build
 
 # Start Server
-FROM node:latest
+FROM node:15-alpine
 
 COPY server.js ./
 
