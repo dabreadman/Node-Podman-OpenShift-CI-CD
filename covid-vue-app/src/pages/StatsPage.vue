@@ -30,19 +30,6 @@ import axios from "axios";
 export default {
   data() {
         return {
-            firstPlot: {
-                type: "bar",
-                title: {
-                    text: 'Covid-19 Visualization',
-                },
-                scaleX: {
-                  labels: ["Deaths", "Recovered Cases", "Confirmed Cases"]
-                },
-                plotarea: {
-                  marginLeft:"dynamic",
-                  marginRight:"dynamic"
-                }
-            },
             secondPlot: {
                 type: "pie3d",
                 legend: {
@@ -75,7 +62,7 @@ export default {
         Multiselect
   },
   methods: {
-    getData: function () {
+    getData() {
       axios
         .get(
           "https://covid-19-coronavirus-statistics.p.rapidapi.com/v1/total",

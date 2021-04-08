@@ -22,7 +22,7 @@ export default {
     object: null,
   }),
   methods: {
-    getData: function () {
+    getData() {
       axios
         .get(
           "https://covid-19-coronavirus-statistics.p.rapidapi.com/v1/total",

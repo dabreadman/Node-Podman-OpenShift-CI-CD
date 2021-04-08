@@ -24,7 +24,7 @@ export default {
     object: null,
   }),
   methods: {
-    getData: function () {
+    getData() {
       this.stats.recovered = "Loading...";
       this.stats.deaths = "Loading...";
       this.stats.closedCases = "Loading...";

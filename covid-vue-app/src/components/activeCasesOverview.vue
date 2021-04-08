@@ -24,7 +24,7 @@ export default {
     object: null,
   }),
   methods: {
-    getData: function () {
+    getData() {
       this.stats.infected = "Loading...";
       this.stats.checked = "Loading...";
       this.stats.reported = "Loading...";
