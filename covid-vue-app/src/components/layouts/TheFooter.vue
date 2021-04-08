@@ -39,7 +39,7 @@
       mdbRow,
       mdbCol
     }
-  }
+  };
 </script>
 
 <style lang="css" scoped></style>

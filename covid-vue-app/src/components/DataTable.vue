@@ -219,9 +219,9 @@ export default {
   },
   methods: {
     getDataforUSA: function () {
-      this.items[0].deaths = "Loading..."
-      this.items[0].recovered = "Loading..."
-      this.items[0].confirmed = "Loading..."
+      this.items[0].deaths = "Loading...";
+      this.items[0].recovered = "Loading...";
+      this.items[0].confirmed = "Loading...";
       axios
         .get(
           `https://covid-19-coronavirus-statistics.p.rapidapi.com/v1/total`,

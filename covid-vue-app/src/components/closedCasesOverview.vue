@@ -25,9 +25,9 @@ export default {
   }),
   methods: {
     getData: function () {
-      this.stats.recovered = "Loading..."
-      this.stats.deaths = "Loading..."
-      this.stats.closedCases = "Loading..."
+      this.stats.recovered = "Loading...";
+      this.stats.deaths = "Loading...";
+      this.stats.closedCases = "Loading...";
       axios
         .get(
           `https://covid-19-coronavirus-statistics.p.rapidapi.com/v1/total`,
@@ -47,7 +47,7 @@ export default {
           this.stats.deaths = response.data.data.deaths;
           this.stats.closedCases = parseInt(this.stats.recovered) + parseInt(this.stats.deaths);
         })
-        .catch((e) =>{
+        .catch((e) => {
           /* eslint-disable no-console */
           console.log(e);
           /* eslint-enable no-console */

@@ -107,7 +107,9 @@ export default {
           "https://world-population.p.rapidapi.com/population",
           {
             params: {
+              /* eslint-disable */
               country_name : this.selected,
+              /* eslint-enable  */
             },
             headers: {
               "x-rapidapi-key": process.env.VUE_APP_POPULATIONAPIKEY,
