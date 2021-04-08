@@ -25,7 +25,7 @@ export default {
     getData: function () {
       axios
         .get(
-          `https://covid-19-coronavirus-statistics.p.rapidapi.com/v1/total`,
+          "https://covid-19-coronavirus-statistics.p.rapidapi.com/v1/total",
           {
             headers: {
               "x-rapidapi-key": process.env.VUE_APP_COVIDAPIKEY,
@@ -41,8 +41,10 @@ export default {
           this.stats.recovered = response.data.data.recovered;
         })
         .catch((e) => {
+          /* eslint-disable no-console */
           console.log(e);
-        })
+          /* eslint-enable no-console */
+        });
     },
   },
   created() {
@@ -51,4 +53,5 @@ export default {
 };
 </script>
 
-<style lang="css" scoped></style>
+<style lang="css" scoped>
+</style>

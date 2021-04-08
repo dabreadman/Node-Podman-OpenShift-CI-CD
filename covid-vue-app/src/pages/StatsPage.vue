@@ -31,12 +31,12 @@ export default {
   data() {
         return {
             firstPlot: {
-                type: 'bar',
+                type: "bar",
                 title: {
                     text: 'Covid-19 Visualization',
                 },
                 scaleX: {
-                  labels: ['Deaths', 'Recovered Cases', 'Confirmed Cases']
+                  labels: ["Deaths", "Recovered Cases", "Confirmed Cases"]
                 },
                 plotarea: {
                   marginLeft:"dynamic",
@@ -44,43 +44,22 @@ export default {
                 }
             },
             secondPlot: {
-                type: 'pie3d',
+                type: "pie3d",
                 legend: {
                   align: "right",
                 },
                 title: {
-                  text: 'Population statistics',
+                  text: "Population statistics",
                 },
                 scaleX: {
-                  labels: ['Deaths', 'Recovered Cases', 'Confirmed Cases']
+                  labels: ["Deaths", "Recovered Cases", "Confirmed Cases"]
                 },
                 plotarea: {
-                  marginTop:'dynamic',
-                  marginLeft:'dynamic',
-                  marginRight:'dynamic'
+                  marginTop:"dynamic",
+                  marginLeft:"dynamic",
+                  marginRight:"dynamic"
                 }
             },
-
-            series: [{
-          values: [56.94],
-          text: "Uninfected Population",
-          backgroundColor: '#FF7965',
-          detached: true
-        },
-        {
-          values: [14.52],
-          text: 'Currently Infected Population',
-          backgroundColor: "#FFCB45",
-          detached: true
-        },
-        {
-          text: 'Recovered Population',
-          values: [9.69],
-          backgroundColor: '#6877e5',
-          detached: true
-        }
-      ],
-
             stats: {
                  recovered: "N/A",
                  deaths: "N/A",
@@ -88,8 +67,8 @@ export default {
                  population: "N/A"
             },
             selected: "Brazil",
-            options: ['Brazil', 'France', 'India', 'Ireland', 'Italy', 'Russia', 'Spain', 'Turkey', 'UK', 'USA'],
-            }
+            options: ["Brazil", "France", "India", "Ireland", "Italy", "Russia", "Spain", "Turkey", "UK", "USA"],
+            };
     },
     components: {
         zingchart: zingchartVue,
@@ -99,7 +78,7 @@ export default {
     getData: function () {
       axios
         .get(
-          `https://covid-19-coronavirus-statistics.p.rapidapi.com/v1/total`,
+          "https://covid-19-coronavirus-statistics.p.rapidapi.com/v1/total",
           {
             params: {
               country: this.selected,
@@ -122,7 +101,7 @@ export default {
           /* eslint-enable no-console */
         });
     },
-    getPopulation: function () {
+    getPopulation() {
       axios
         .get(
           "https://world-population.p.rapidapi.com/population",

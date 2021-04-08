@@ -30,7 +30,7 @@ export default {
       this.stats.reported = "Loading...";
       axios
         .get(
-          `https://covid-19-coronavirus-statistics.p.rapidapi.com/v1/total`,
+          "https://covid-19-coronavirus-statistics.p.rapidapi.com/v1/total",
           {
             params: {
               country: "Ireland",

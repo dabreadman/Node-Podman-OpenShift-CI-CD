@@ -30,9 +30,9 @@
 </template>
 
 <script>
-  import { mdbFooter, mdbContainer, mdbRow, mdbCol } from 'mdbvue';
+  import { mdbFooter, mdbContainer, mdbRow, mdbCol } from "mdbvue";
   export default {
-    name: 'TheFooter',
+    name: "TheFooter",
     components: {
       mdbFooter,
       mdbContainer,
