@@ -23,9 +23,9 @@
 </template>
 
 <script>
-import 'zingchart/es6';
-import zingchartVue from 'zingchart-vue';
-import Multiselect from 'vue-multiselect'
+import "zingchart/es6";
+import zingchartVue from "zingchart-vue";
+import Multiselect from "vue-multiselect";
 import axios from "axios";
 export default {
   data() {
@@ -39,8 +39,8 @@ export default {
                   labels: ['Deaths', 'Recovered Cases', 'Confirmed Cases']
                 },
                 plotarea: {
-                  marginLeft:'dynamic',
-                  marginRight:'dynamic'
+                  marginLeft:"dynamic",
+                  marginRight:"dynamic"
                 }
             },
             secondPlot: {
@@ -70,7 +70,7 @@ export default {
         {
           values: [14.52],
           text: 'Currently Infected Population',
-          backgroundColor: '#FFCB45',
+          backgroundColor: "#FFCB45",
           detached: true
         },
         {
@@ -87,7 +87,7 @@ export default {
                  confirmed: "N/A",
                  population: "N/A"
             },
-            selected: 'Brazil',
+            selected: "Brazil",
             options: ['Brazil', 'France', 'India', 'Ireland', 'Italy', 'Russia', 'Spain', 'Turkey', 'UK', 'USA'],
             }
     },
@@ -116,14 +116,16 @@ export default {
           this.stats.deaths = response.data.data.deaths;
           this.stats.confirmed = response.data.data.confirmed;
         })
-        .catch((e) =>{
+        .catch((e) => {
+          /* eslint-disable no-console */
           console.log(e);
+          /* eslint-enable no-console */
         });
     },
     getPopulation: function () {
       axios
         .get(
-          `https://world-population.p.rapidapi.com/population`,
+          "https://world-population.p.rapidapi.com/population",
           {
             params: {
               country_name : this.selected,
@@ -137,8 +139,10 @@ export default {
         .then((response) => {
           this.stats.population = response.data.body.population;
         })
-        .catch((e) =>{
+        .catch((e) => {
+          /* eslint-disable no-console */
           console.log(e);
+          /* eslint-enable no-console */
         });
     },
   },

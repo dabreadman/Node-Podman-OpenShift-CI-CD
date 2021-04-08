@@ -25,9 +25,9 @@ export default {
   }),
   methods: {
     getData: function () {
-      this.stats.infected = "Loading..."
-      this.stats.checked = "Loading..."
-      this.stats.reported = "Loading..."
+      this.stats.infected = "Loading...";
+      this.stats.checked = "Loading...";
+      this.stats.reported = "Loading...";
       axios
         .get(
           `https://covid-19-coronavirus-statistics.p.rapidapi.com/v1/total`,
@@ -47,8 +47,10 @@ export default {
           this.stats.checked = response.data.data.lastChecked.substring(0,10) + " at " + response.data.data.lastChecked.substring(11,16);
           this.stats.reported = response.data.data.lastReported.substring(0,10) + " at " + response.data.data.lastReported.substring(11,16);
         })
-        .catch((e) =>{
+        .catch((e) => {
+          /* eslint-disable no-console */
           console.log(e);
+          /* eslint-enable no-console */
         });
     },
   },
