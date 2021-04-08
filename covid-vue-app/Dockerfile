@@ -5,7 +5,9 @@ WORKDIR /usr/src/app
 
 COPY package*.json ./
 
-RUN apt install git
+RUN apt-get -y update
+RUN apt-get -y install git
+RUN npm install
 
 # Test and lint and Prod build
 FROM node:12-alpine as prod_build
@@ -25,7 +27,9 @@ WORKDIR /usr/src/app
 
 COPY container-package.json ./package.json
 
-RUN apt install git
+RUN apt-get -y update
+RUN apt-get -y install git
+RUN npm install
 
 # Start Server
 FROM node:12-alpine
