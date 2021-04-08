@@ -15,6 +15,10 @@ env:
   APP_NAME: "covid-app"
   TAG: ""
 
+  # Application environment variables
+  VUE_APP_COVIDAPIKEY: ${{ secrets.VUE_APP_COVIDAPIKEY }}
+  VUE_APP_POPULATIONAPIKEY: ${{ secrets.VUE_APP_POPULATIONAPIKEY }}
+
 on:
   push:
     branches:
