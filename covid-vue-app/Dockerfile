@@ -5,6 +5,8 @@ WORKDIR /usr/src/app
 
 COPY package*.json ./
 
+RUN apk add --no-cache git
+
 RUN npm install
 
 # Test and lint and Prod build
@@ -24,6 +26,8 @@ FROM node:12-alpine as server_modules
 WORKDIR /usr/src/app
 
 COPY container-package.json ./package.json
+
+RUN apk add --no-cache git
 
 RUN npm install
 
