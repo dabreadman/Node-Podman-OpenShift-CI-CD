@@ -1,9 +1,3 @@
-ARG VUE_APP_COVIDAPIKEY
-ARG VUE_APP_POPULATIONAPIKEY
-
-ENV VUE_APP_COVIDAPIKEY = ${VUE_APP_COVIDAPIKEY}
-ENV VUE_APP_POPULATIONAPIKEY = ${VUE_APP_POPULATIONAPIKEY}
-
 # Install dev dependencies stage
 FROM node:12-alpine as application_modules
 
@@ -16,7 +10,14 @@ RUN apk add --no-cache git
 RUN npm install
 
 # Test and lint and Prod build
+
 FROM node:12-alpine as prod_build
+
+ARG VUE_APP_COVIDAPIKEY
+ARG VUE_APP_POPULATIONAPIKEY
+
+ENV VUE_APP_COVIDAPIKEY = ${VUE_APP_COVIDAPIKEY}
+ENV VUE_APP_POPULATIONAPIKEY = ${VUE_APP_POPULATIONAPIKEY}
 
 WORKDIR /usr/src/app
 
