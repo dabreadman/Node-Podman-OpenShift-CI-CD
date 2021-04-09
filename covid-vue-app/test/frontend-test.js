@@ -2,8 +2,8 @@ const {Builder, By} = require("selenium-webdriver");
 const assert = require("assert");
 
 const driver = new Builder().forBrowser("firefox").build();
-var numberOfTestsCompleted = 0;
-var numberOfErrors = 0;
+let numberOfTestsCompleted = 0;
+let numberOfErrors = 0;
 const numberOfTests = 7;
 
 
