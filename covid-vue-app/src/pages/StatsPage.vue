@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import 'zingchart';
+import "zingchart";
 import zingchartVue from "zingchart-vue";
 import Multiselect from "vue-multiselect";
 import axios from "axios";
