@@ -34,8 +34,6 @@ WORKDIR /usr/src/app
 
 COPY container-package.json ./package.json
 
-RUN apk add --no-cache git
-
 RUN npm install
 
 # Start Server

@@ -1,5 +1,5 @@
 # Install dev dependencies stage
-FROM node:15-alpine
+FROM node:12-alpine
 
 WORKDIR /usr/src/app
 
