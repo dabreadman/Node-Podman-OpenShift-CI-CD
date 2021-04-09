@@ -6,4 +6,9 @@ services:
       context: .
     ports:
       - "8080:8080"
+    volumes:
+      - ./public:/usr/src/app/public
+      - ./src:/usr/src/app/src
+      - ./package.json:/usr/src/app/package.json
+      - ./package-lock.json:/usr/src/app/package-lock.json
 
