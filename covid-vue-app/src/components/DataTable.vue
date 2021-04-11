@@ -10,7 +10,7 @@
       hide-default-footer
     >
       <template v-slot:header>
-        <v-toolbar dark color="blue darken-3" class="mb-1">
+        <v-toolbar dark color="blue" class="mb-1">
           <v-text-field
             v-model="search"
             clearable
@@ -117,13 +117,13 @@
           <v-btn
             fab
             dark
-            color="blue darken-3"
+            color="blue"
             class="mr-1"
             @click="formerPage"
           >
             <v-icon>mdi-chevron-left</v-icon>
           </v-btn>
-          <v-btn fab dark color="blue darken-3" class="ml-1" @click="nextPage">
+          <v-btn fab dark color="blue" class="ml-1" @click="nextPage">
             <v-icon>mdi-chevron-right</v-icon>
           </v-btn>
         </v-row>
@@ -133,6 +133,7 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
   data() {
     return {
@@ -143,77 +144,67 @@ export default {
       page: 1,
       itemsPerPage: 4,
       sortBy: "name",
-      keys: ["Name", "Deaths", "TotalCases", "NewCases", "CasesPerMillion"],
+      keys: ["Name", "Recovered", "Deaths", "Confirmed"],
       items: [
         {
           name: "USA",
-          deaths: 541449,
-          totalcases: 29843045,
-          newcases: 41231,
-          casespermillion: 89798,
+          deaths: null,
+          recovered: null,
+          confirmed: null,
         },
         {
           name: "India",
-          deaths: 158213,
-          totalcases: 11284285,
-          newcases: 22815,
-          casespermillion: 8122,
+          deaths: null,
+          recovered: null,
+          confirmed: null,
         },
         {
           name: "Brazil",
-          deaths: 268568,
-          totalcases: 11125017,
-          newcases: null,
-          casespermillion: 52084,
+          deaths: null,
+          recovered: null,
+          confirmed: null,
         },
         {
           name: "Russia",
-          deaths: 90275,
-          totalcases: 4351553,
-          newcases: 9079,
-          casespermillion: 29810,
+          deaths: null,
+          recovered: null,
+          confirmed: null,
         },
         {
           name: "UK",
-          deaths: 124987,
-          totalcases: 4234924,
-          newcases: 5926,
-          casespermillion: 62158,
+          deaths: null,
+          recovered: null,
+          confirmed: null,
         },
         {
           name: "France",
-          deaths: 89565,
-          totalcases: 3963165,
-          newcases: 30303,
-          casespermillion: 60624,
+          deaths: null,
+          recovered: null,
+          confirmed: null,
         },
         {
           name: "Spain",
-          deaths: 71727,
-          totalcases: 3164983,
-          newcases: null,
-          casespermillion: 67675,
+          deaths: null,
+          recovered: null,
+          confirmed: null,
         },
         {
           name: "Italy",
-          deaths: 100811,
-          totalcases: 3123368,
-          newcases: 22409,
-          casespermillion: 51711,
+          deaths: null,
+          recovered: null,
+          confirmed: null,
         },
         {
           name: "Turkey",
-          deaths: 29227,
-          totalcases: 2821943,
-          newcases: 14556,
-          casespermillion: 33215,
+          deaths: null,
+          recovered: null,
+          confirmed: null,
         },
         {
           name: "Ireland",
-          deaths: 4499,
-          totalcases: 224588,
-          newcases: 631,
-          casespermillion: 45138,
+          deaths: null,
+          recovered: null,
+          confirmed: null,
         },
       ],
     };
@@ -227,6 +218,466 @@ export default {
     },
   },
   methods: {
+    getDataforUSA() {
+      this.items[0].deaths = "Loading...";
+      this.items[0].recovered = "Loading...";
+      this.items[0].confirmed = "Loading...";
+      axios
+        .get(
+          "https://covid-19-coronavirus-statistics.p.rapidapi.com/v1/total",
+          {
+            params: {
+              country: "US",
+            },
+            headers: {
+              "x-rapidapi-key": process.env.VUE_APP_COVIDAPIKEY,
+              "x-rapidapi-host":
+                "covid-19-coronavirus-statistics.p.rapidapi.com",
+            },
+          }
+        )
+        .then((response) => {
+          if(response.data.data.deaths == null){
+            this.items[0].deaths = "N/A";
+          }
+          else{
+            this.items[0].deaths = response.data.data.deaths;
+          }
+
+          if(response.data.data.recovered == null){
+            this.items[0].recovered = "N/A";
+          }
+          else{
+            this.items[0].recovered = response.data.data.recovered;
+          }
+
+          if(response.data.data.confirmed == null){
+            this.items[0].confirmed = "N/A";
+          }
+          else{
+            this.items[0].confirmed = response.data.data.confirmed;
+          }
+        })
+        .catch((e) => {
+          /* eslint-disable no-console */
+          console.log(e);
+          /* eslint-enable no-console */
+        });
+    },
+    getDataforIndia() {
+      this.items[1].deaths = "Loading...";
+      this.items[1].recovered = "Loading...";
+      this.items[1].confirmed = "Loading...";
+      axios
+        .get(
+          "https://covid-19-coronavirus-statistics.p.rapidapi.com/v1/total",
+          {
+            params: {
+              country: "India",
+            },
+            headers: {
+              "x-rapidapi-key": process.env.VUE_APP_COVIDAPIKEY,
+              "x-rapidapi-host":
+                "covid-19-coronavirus-statistics.p.rapidapi.com",
+            },
+          }
+        )
+        .then((response) => {
+          if(response.data.data.deaths == null){
+            this.items[1].deaths = "N/A";
+          }
+          else{
+            this.items[1].deaths = response.data.data.deaths;
+          }
+
+          if(response.data.data.recovered == null){
+            this.items[1].recovered = "N/A";
+          }
+          else{
+            this.items[1].recovered = response.data.data.recovered;
+          }
+
+          if(response.data.data.confirmed == null){
+            this.items[1].confirmed = "N/A";
+          }
+          else{
+            this.items[1].confirmed = response.data.data.confirmed;
+          }
+        })
+        .catch((e) => {
+          /* eslint-disable no-console */
+          console.log(e);
+          /* eslint-enable no-console */
+        });
+    },
+    getDataforBrazil() {
+      this.items[2].deaths = "Loading...";
+      this.items[2].recovered = "Loading...";
+      this.items[2].confirmed = "Loading..."; 
+      axios
+        .get(
+          "https://covid-19-coronavirus-statistics.p.rapidapi.com/v1/total",
+          {
+            params: {
+              country: "Brazil",
+            },
+            headers: {
+              "x-rapidapi-key": process.env.VUE_APP_COVIDAPIKEY,
+              "x-rapidapi-host":
+                "covid-19-coronavirus-statistics.p.rapidapi.com",
+            },
+          }
+        )
+        .then((response) => {
+          if(response.data.data.deaths == null){
+            this.items[2].deaths = "N/A";
+          }
+          else{
+            this.items[2].deaths = response.data.data.deaths;
+          }
+
+          if(response.data.data.recovered == null){
+            this.items[2].recovered = "N/A";
+          }
+          else{
+            this.items[2].recovered = response.data.data.recovered;
+          }
+
+          if(response.data.data.confirmed == null){
+            this.items[2].confirmed = "N/A";
+          }
+          else{
+            this.items[2].confirmed = response.data.data.confirmed;
+          }
+        })
+        .catch((e) => {
+          /* eslint-disable no-console */
+          console.log(e);
+          /* eslint-enable no-console */
+        });
+    },
+    getDataforRussia() {
+      this.items[3].deaths = "Loading...";
+      this.items[3].recovered = "Loading...";
+      this.items[3].confirmed = "Loading...";
+      axios
+        .get(
+          "https://covid-19-coronavirus-statistics.p.rapidapi.com/v1/total",
+          {
+            params: {
+              country: "Russia",
+            },
+            headers: {
+              "x-rapidapi-key": process.env.VUE_APP_COVIDAPIKEY,
+              "x-rapidapi-host":
+                "covid-19-coronavirus-statistics.p.rapidapi.com",
+            },
+          }
+        )
+        .then((response) => {
+          if(response.data.data.deaths == null){
+            this.items[3].deaths = "N/A";
+          }
+          else{
+            this.items[3].deaths = response.data.data.deaths;
+          }
+
+          if(response.data.data.recovered == null){
+            this.items[3].recovered = "N/A";
+          }
+          else{
+            this.items[3].recovered = response.data.data.recovered;
+          }
+
+          if(response.data.data.confirmed == null){
+            this.items[3].confirmed = "N/A";
+          }
+          else{
+            this.items[3].confirmed = response.data.data.confirmed;
+          }
+        })
+        .catch((e) => {
+          /* eslint-disable no-console */
+          console.log(e);
+          /* eslint-enable no-console */
+        });
+    },
+    getDataforUK() {
+      this.items[4].deaths = "Loading...";
+      this.items[4].recovered = "Loading...";
+      this.items[4].confirmed = "Loading...";
+      axios
+        .get(
+          "https://covid-19-coronavirus-statistics.p.rapidapi.com/v1/total",
+          {
+            params: {
+              country: "UK",
+            },
+            headers: {
+              "x-rapidapi-key": process.env.VUE_APP_COVIDAPIKEY,
+              "x-rapidapi-host":
+                "covid-19-coronavirus-statistics.p.rapidapi.com",
+            },
+          }
+        )
+        .then((response) => {
+          if(response.data.data.deaths == null){
+            this.items[4].deaths = "N/A";
+          }
+          else{
+            this.items[4].deaths = response.data.data.deaths;
+          }
+
+          if(response.data.data.recovered == null){
+            this.items[4].recovered = "N/A";
+          }
+          else{
+            this.items[4].recovered = response.data.data.recovered;
+          }
+
+          if(response.data.data.confirmed == null){
+            this.items[4].confirmed = "N/A";
+          }
+          else{
+            this.items[4].confirmed = response.data.data.confirmed;
+          }
+        })
+        .catch((e) => {
+          /* eslint-disable no-console */
+          console.log(e);
+          /* eslint-enable no-console */
+        });
+    },
+    getDataforFrance() {
+      this.items[5].deaths = "Loading...";
+      this.items[5].recovered = "Loading...";
+      this.items[5].confirmed = "Loading...";
+      axios
+        .get(
+          "https://covid-19-coronavirus-statistics.p.rapidapi.com/v1/total",
+          {
+            params: {
+              country: "France",
+            },
+            headers: {
+              "x-rapidapi-key": process.env.VUE_APP_COVIDAPIKEY,
+              "x-rapidapi-host":
+                "covid-19-coronavirus-statistics.p.rapidapi.com",
+            },
+          }
+        )
+        .then((response) => {
+          if(response.data.data.deaths == null){
+            this.items[5].deaths = "N/A";
+          }
+          else{
+            this.items[5].deaths = response.data.data.deaths;
+          }
+
+          if(response.data.data.recovered == null){
+            this.items[5].recovered = "N/A";
+          }
+          else{
+            this.items[5].recovered = response.data.data.recovered;
+          }
+
+          if(response.data.data.confirmed == null){
+            this.items[5].confirmed = "N/A";
+          }
+          else{
+            this.items[5].confirmed = response.data.data.confirmed;
+          }
+        })
+        .catch((e) => {
+          /* eslint-disable no-console */
+          console.log(e);
+          /* eslint-enable no-console */
+        });
+    },
+    getDataforSpain() {
+      this.items[6].deaths = "Loading...";
+      this.items[6].recovered = "Loading...";
+      this.items[6].confirmed = "Loading...";
+      axios
+        .get(
+          "https://covid-19-coronavirus-statistics.p.rapidapi.com/v1/total",
+          {
+            params: {
+              country: "Spain",
+            },
+            headers: {
+              "x-rapidapi-key": process.env.VUE_APP_COVIDAPIKEY,
+              "x-rapidapi-host":
+                "covid-19-coronavirus-statistics.p.rapidapi.com",
+            },
+          }
+        )
+        .then((response) => {
+          if(response.data.data.deaths == null){
+            this.items[6].deaths = "N/A";
+          }
+          else{
+            this.items[6].deaths = response.data.data.deaths;
+          }
+
+          if(response.data.data.recovered == null){
+            this.items[6].recovered = "N/A";
+          }
+          else{
+            this.items[6].recovered = response.data.data.recovered;
+          }
+
+          if(response.data.data.confirmed == null){
+            this.items[6].confirmed = "N/A";
+          }
+          else{
+            this.items[6].confirmed = response.data.data.confirmed;
+          }
+        })
+        .catch((e) => {
+          /* eslint-disable no-console */
+          console.log(e);
+          /* eslint-enable no-console */
+        });
+    },
+    getDataforItaly() {
+      this.items[7].deaths = "Loading...";
+      this.items[7].recovered = "Loading...;";
+      this.items[7].confirmed = "Loading...";
+      axios
+        .get(
+          "https://covid-19-coronavirus-statistics.p.rapidapi.com/v1/total",
+          {
+            params: {
+              country: "Italy",
+            },
+            headers: {
+              "x-rapidapi-key": process.env.VUE_APP_COVIDAPIKEY,
+              "x-rapidapi-host":
+                "covid-19-coronavirus-statistics.p.rapidapi.com",
+            },
+          }
+        )
+        .then((response) => {
+          if(response.data.data.deaths == null){
+            this.items[7].deaths = "N/A";
+          }
+          else{
+            this.items[7].deaths = response.data.data.deaths;
+          }
+
+          if(response.data.data.recovered == null){
+            this.items[7].recovered = "N/A";
+          }
+          else{
+            this.items[7].recovered = response.data.data.recovered;
+          }
+
+          if(response.data.data.confirmed == null){
+            this.items[7].confirmed = "N/A";
+          }
+          else{
+            this.items[7].confirmed = response.data.data.confirmed;
+          }
+        })
+        .catch((e) => {
+          /* eslint-disable no-console */
+          console.log(e);
+          /* eslint-enable no-console */
+        });
+    },
+    getDataforTurkey() {
+      this.items[8].deaths = "Loading...";
+      this.items[8].recovered = "Loading...";
+      this.items[8].confirmed = "Loading...";
+      axios
+        .get(
+          "https://covid-19-coronavirus-statistics.p.rapidapi.com/v1/total",
+          {
+            params: {
+              country: "Turkey",
+            },
+            headers: {
+              "x-rapidapi-key": process.env.VUE_APP_COVIDAPIKEY,
+              "x-rapidapi-host":
+                "covid-19-coronavirus-statistics.p.rapidapi.com",
+            },
+          }
+        )
+        .then((response) => {
+          if(response.data.data.deaths == null){
+            this.items[8].deaths = "N/A";
+          }
+          else{
+            this.items[8].deaths = response.data.data.deaths;
+          }
+
+          if(response.data.data.recovered == null){
+            this.items[8].recovered = "N/A";
+          }
+          else{
+            this.items[8].recovered = response.data.data.recovered;
+          }
+
+          if(response.data.data.confirmed == null){
+            this.items[8].confirmed = "N/A";
+          }
+          else{
+            this.items[8].confirmed = response.data.data.confirmed;
+          }
+        })
+        .catch((e) => {
+          /* eslint-disable no-console */
+          console.log(e);
+          /* eslint-enable no-console */
+        });
+    },
+    getDataforIreland() {
+      this.items[9].deaths = "Loading...";
+      this.items[9].recovered = "Loading...";
+      this.items[9].confirmed = "Loading...";
+      axios
+        .get(
+          "https://covid-19-coronavirus-statistics.p.rapidapi.com/v1/total",
+          {
+            params: {
+              country: "Ireland",
+            },
+            headers: {
+              "x-rapidapi-key": process.env.VUE_APP_COVIDAPIKEY,
+              "x-rapidapi-host":
+                "covid-19-coronavirus-statistics.p.rapidapi.com",
+            },
+          }
+        )
+        .then((response) => {
+          if(response.data.data.deaths == null){
+            this.items[9].deaths = "N/A";
+          }
+          else{
+            this.items[9].deaths = response.data.data.deaths;
+          }
+
+          if(response.data.data.recovered == null){
+            this.items[9].recovered = "N/A";
+          }
+          else{
+            this.items[9].recovered = response.data.data.recovered;
+          }
+
+          if(response.data.data.confirmed == null){
+            this.items[9].confirmed = "N/A";
+          }
+          else{
+            this.items[9].confirmed = response.data.data.confirmed;
+          }
+        })
+        .catch((e) => {
+          /* eslint-disable no-console */
+          console.log(e);
+          /* eslint-enable no-console */
+        });
+    },
     nextPage() {
       if (this.page + 1 <= this.numberOfPages) {
         this.page += 1;
@@ -240,6 +691,18 @@ export default {
     updateItemsPerPage(number) {
       this.itemsPerPage = number;
     },
+  },
+    created() {
+    this.getDataforUSA();
+    this.getDataforIndia();
+    this.getDataforBrazil();
+    this.getDataforRussia();
+    this.getDataforUK();
+    this.getDataforFrance();
+    this.getDataforSpain();
+    this.getDataforItaly();
+    this.getDataforTurkey();
+    this.getDataforIreland();
   },
 };
 </script>

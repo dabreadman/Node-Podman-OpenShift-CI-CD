@@ -2,12 +2,9 @@
   <v-container>
     <v-row>
       <v-col align="center">
-        <h1 class="display-4">Coronavirus total cases</h1>
-        <h3 class="display-2 py-6">
-          Total Cases : <span class="orange--text">{{ stats.cases }}</span>
-        </h3>
-        <h3 class="display-2 py-6">
-          Total Deaths : <span class="red--text">{{ stats.deaths }}</span>
+        <h3 id="theTitle" class="display-1 py-6">
+          Around the world, COVID-19 has infected <span class="orange--text">{{ stats.cases }}</span> people 
+          and it has taken <span class="red--text">{{ stats.deaths }}</span> lives.
         </h3>
       </v-col>
     </v-row>
@@ -18,24 +15,20 @@
 import axios from "axios";
 export default {
   data: () => ({
-    //We use vue interpolations to pull the data from some source.
-    //For now the source is hardcoded but this can also be called by an api
-    //You could call the api in a method, which would be called the when the component enters the lifcycle
-    //typically created()
     stats: {
-      cases: null,
-      deaths: null,
+      cases: "...",
+      deaths: "...",
     },
     object: null,
   }),
   methods: {
-    getData: function () {
+    getData() {
       axios
         .get(
-          `https://covid-19-coronavirus-statistics.p.rapidapi.com/v1/total`,
+          "https://covid-19-coronavirus-statistics.p.rapidapi.com/v1/total",
           {
             headers: {
-              "x-rapidapi-key": "XXXX",
+              "x-rapidapi-key": process.env.VUE_APP_COVIDAPIKEY,
               "x-rapidapi-host":
                 "covid-19-coronavirus-statistics.p.rapidapi.com",
             },
@@ -47,11 +40,11 @@ export default {
           this.stats.deaths = response.data.data.deaths;
           this.stats.recovered = response.data.data.recovered;
         })
-        .catch
-        //   (e) => {
-        //   console.log(e);
-        // }
-        ();
+        .catch((e) => {
+          /* eslint-disable no-console */
+          console.log(e);
+          /* eslint-enable no-console */
+        });
     },
   },
   created() {
@@ -60,4 +53,5 @@ export default {
 };
 </script>
 
-<style lang="css" scoped></style>
+<style lang="css" scoped>
+</style>

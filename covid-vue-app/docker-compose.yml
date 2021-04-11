@@ -11,3 +11,4 @@ services:
       - ./src:/usr/src/app/src
       - ./package.json:/usr/src/app/package.json
       - ./package-lock.json:/usr/src/app/package-lock.json
+

@@ -1,11 +1,13 @@
 # Install dev dependencies stage
-FROM node:12-alpine as application_modules
+FROM node:12-alpine
 
 WORKDIR /usr/src/app
 
 COPY . . 
 
-RUN npm install --silent
+RUN apk add --no-cache git
+
+RUN npm install 
 
 ENV PORT=8080
 
