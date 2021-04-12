@@ -103,7 +103,8 @@ Then, we start with the steps, most of which are from the template mentioned abo
 
 1. Assign APP_NAME and TAG is not present using environment variables.  
     `${GITHUB_SHA::7}` for example takes 7 characters for current workflow's SHA.  
-    `jq .version package.json` uses [`jq`](https://stedolan.github.io/jq/) and reads the property `version` from [`package.json`](https://github.com/dabreadman/Node-Podman-OpenShift-CI-CD/blob/main/covid-vue-app/package.json).
+    `jq .version package.json` uses [`jq`](https://stedolan.github.io/jq/) and reads the property `version` from [`package.json`](https://github.com/dabreadman/Node-Podman-OpenShift-CI-CD/blob/main/covid-vue-app/package.json).  
+     `-r` flag removes `".."` from output.
 
     ```yaml
         - name: Determine app name
@@ -113,7 +114,7 @@ Then, we start with the steps, most of which are from the template mentioned abo
         - name: Determine tag
           if: env.TAG == ''
           run: |
-            echo "TAG=$(jq .version package.json)" | tee -a $GITHUB_ENV
+            echo "TAG=$(jq -r .version package.json)" | tee -a $GITHUB_ENV
     ```
 
 1. We try to retrieve cached docker layers

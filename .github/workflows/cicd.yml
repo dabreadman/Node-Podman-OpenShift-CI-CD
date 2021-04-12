@@ -85,7 +85,7 @@ jobs:
       - name: Determine tag by version
         if: env.TAG == ''
         run: |
-          echo "TAG=$(jq .version package.json)" | tee -a $GITHUB_ENV
+          echo "TAG=$(jq -r .version package.json)" | tee -a $GITHUB_ENV
 
       - name: Docker Layer Caching
         uses: satackey/action-docker-layer-caching@v0.0.11
