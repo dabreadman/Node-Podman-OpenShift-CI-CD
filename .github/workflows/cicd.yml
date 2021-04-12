@@ -23,6 +23,9 @@ on:
   push:
     branches:
       - main
+    paths:
+      - "covid-vue-app"
+      - ".github/workflows"
   pull_request:
   workflow_dispatch:
 
@@ -79,16 +82,16 @@ jobs:
         run: |
           echo "APP_NAME=$(basename $PWD)" | tee -a $GITHUB_ENV
 
-      - name: Determine tag
+      - name: Determine tag by version
         if: env.TAG == ''
         run: |
-          echo "TAG=${GITHUB_SHA::7}" | tee -a $GITHUB_ENV
+          echo "TAG=$(jq -r .version package.json)" | tee -a $GITHUB_ENV
 
       - name: Docker Layer Caching
         uses: satackey/action-docker-layer-caching@v0.0.11
 
       - name: Build image, run lint/test
-        run: podman build . --file Dockerfile --build-arg VUE_APP_COVIDAPIKEY=${{ env.VUE_APP_COVIDAPIKEY }} --build-arg VUE_APP_POPULATIONAPIKEY=${{ env.VUE_APP_POPULATIONAPIKEY }} --tag ${{ env.REGISTRY }}/${{ env.REGISTRY_USERNAME }}/${{ env.APP_NAME }}:${{ env.TAG }} 
+        run: podman build . --file Dockerfile --build-arg VUE_APP_COVIDAPIKEY=${{ env.VUE_APP_COVIDAPIKEY }} --build-arg VUE_APP_POPULATIONAPIKEY=${{ env.VUE_APP_POPULATIONAPIKEY }} --tag ${{ env.REGISTRY }}/${{ env.REGISTRY_USERNAME }}/${{ env.APP_NAME }}:${{ env.TAG }}
 
       - name: Registry Autherisation
         run: podman login -u ${{ env.REGISTRY_USERNAME }} -p ${{ env.REGISTRY_PASSWORD }} quay.io

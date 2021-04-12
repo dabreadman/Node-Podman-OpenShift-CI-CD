@@ -7,7 +7,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "test": "jest --coverage --watchAll=false || exit 0"
+    "test": "jest --coverage"
   },
   "jest": {
     "testMatch": [
@@ -19,7 +19,7 @@
         "branches": 80,
         "functions": 80,
         "lines": 80,
-        "statements": -10
+        "statements": 80
       }
     },
     "moduleFileExtensions": [
