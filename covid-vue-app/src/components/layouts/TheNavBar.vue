@@ -3,7 +3,7 @@
     <v-app-bar color="blue" absolute flat>
       <v-row class="nav-padding-primary" v-if="$vuetify.breakpoint.mdAndUp">
         <v-col class="col-3">
-          <a href="/"><h1 style="color:white; text-decoration: none; text-shadow: 3px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;" >COVID-19 Tracker</h1></a>
+          <a href="/"><h1 style="color:white;" >COVID-19 Tracker</h1></a>
         </v-col>
         <v-col align="center" class="col-6">
           <v-btn text to="/" class="mx-12" style="color:white; margin-top: 5px;">Home</v-btn>
