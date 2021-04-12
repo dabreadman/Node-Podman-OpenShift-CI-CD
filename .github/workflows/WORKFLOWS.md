@@ -30,15 +30,18 @@ APP_NAME: "covid-app"
 TAG: ""
 ```
 
-We then setup our workflow triggers, here we have it on `push` to `main` or `pull_request` and [`workflow_dispatch`](https://docs.github.com/en/actions/reference/events-that-trigger-workflows#workflow_dispatch) incase we want to trigger the workflow manually.
+We then setup our workflow triggers, here we have it on `push` to `main` at `covid-vue-app` or `.github/workflows` directories or `pull_request` and [`workflow_dispatch`](https://docs.github.com/en/actions/reference/events-that-trigger-workflows#workflow_dispatch) incase we want to trigger the workflow manually.
 
 ```yaml
 on:
-    push:
-        branches:
-            - main
+  push:
+    branches:
+      - main
+    paths:
+      - "covid-vue-app"
+      - ".github/workflows"
   pull_request:
-    workflow_dispatch:
+  workflow_dispatch:
 ```
 
 Then we start a job, call it `dev-deployment` as we are deploying to `dev` environment.  
@@ -48,13 +51,13 @@ We set the right working directory to `./covid-vue-app`, and declare the environ
 
 ```yaml
 jobs:
-    dev-deployment:
-        name: Build and deploy to OpenShift Dev
-        runs-on: ubuntu-latest
-        defaults:
-        run:
-            working-directory: ./covid-vue-app
-            environment: development
+  dev-deployment:
+    name: Build and deploy to OpenShift Dev
+    runs-on: ubuntu-latest
+    defaults:
+    run:
+      working-directory: ./covid-vue-app
+    environment: development
 ```
 
 Then, we start with the steps, most of which are from the template mentioned above.  
@@ -99,17 +102,18 @@ Then, we start with the steps, most of which are from the template mentioned abo
     ```
 
 1. Assign APP_NAME and TAG is not present using environment variables.  
-    `${GITHUB_SHA::7}` for example takes 7 characters for current workflow's SHA.
+    `${GITHUB_SHA::7}` for example takes 7 characters for current workflow's SHA.  
+    `jq .version package.json` uses [`jq`](https://stedolan.github.io/jq/) and reads the property `version` from [`package.json`](https://github.com/dabreadman/Node-Podman-OpenShift-CI-CD/blob/main/covid-vue-app/package.json).
 
     ```yaml
         - name: Determine app name
-        if: env.APP_NAME == ''
-        run: |
+          if: env.APP_NAME == ''
+          run: |
             echo "APP_NAME=$(basename $PWD)" | tee -a $GITHUB_ENV
         - name: Determine tag
-        if: env.TAG == ''
-        run: |
-            echo "TAG=${GITHUB_SHA::7}" | tee -a $GITHUB_ENV
+          if: env.TAG == ''
+          run: |
+            echo "TAG=$(jq .version package.json)" | tee -a $GITHUB_ENV
     ```
 
 1. We try to retrieve cached docker layers
@@ -139,19 +143,19 @@ The actions deletes previous deployment if present and deploy the image.
         - name: Log in to OpenShift
           uses: redhat-actions/oc-login@v1
           with:
-                openshift_server_url: ${{ env.OPENSHIFT_SERVER }}
-                openshift_token: ${{ env.OPENSHIFT_TOKEN }}
-                insecure_skip_tls_verify: true
-                namespace: ${{ env.OPENSHIFT_NAMESPACE }}
+            openshift_server_url: ${{ env.OPENSHIFT_SERVER }}
+            openshift_token: ${{ env.OPENSHIFT_TOKEN }}
+            insecure_skip_tls_verify: true
+            namespace: ${{ env.OPENSHIFT_NAMESPACE }}
 
         - name: Create and expose app
           id: deploy-and-expose
           uses: redhat-actions/oc-new-app@v1
           with:
-                app_name: ${{ env.APP_NAME }}
-                image: ${{ env.REGISTRY }}/${{ env.REGISTRY_USERNAME }}/${{ env.APP_NAME }}:${{ env.TAG }}
-                namespace: ${{ env.OPENSHIFT_NAMESPACE }}
-                port: ${{ env.APP_PORT }}
+            app_name: ${{ env.APP_NAME }}
+            image: ${{ env.REGISTRY }}/${{ env.REGISTRY_USERNAME }}/${{ env.APP_NAME }}:${{ env.TAG }}
+            namespace: ${{ env.OPENSHIFT_NAMESPACE }}
+            port: ${{ env.APP_PORT }}
     ```
 
 Few of the modifications are that we uses this actions that caches docker layers for speedup (don't think it benefits much now with the current version tagging.)
