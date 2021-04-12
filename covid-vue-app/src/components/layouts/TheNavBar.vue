@@ -1,6 +1,6 @@
 <template lang="html">
   <v-container fluid>
-    <v-app-bar color="blue" absolute flat>
+    <v-app-bar color="black" absolute flat>
       <v-row class="nav-padding-primary" v-if="$vuetify.breakpoint.mdAndUp">
         <v-col class="col-3">
           <a href="/"><h1 style="color:white;" >COVID-19 Tracker</h1></a>
