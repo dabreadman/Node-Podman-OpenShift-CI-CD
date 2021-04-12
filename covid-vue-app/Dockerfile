@@ -6,7 +6,7 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 
 RUN apk add --no-cache git
-
+RUN npm cache verify
 RUN npm install
 
 # Test and lint and Prod build
