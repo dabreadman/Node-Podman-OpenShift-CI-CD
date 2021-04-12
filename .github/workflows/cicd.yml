@@ -23,6 +23,9 @@ on:
   push:
     branches:
       - main
+    paths:
+      - "covid-vue-app"
+      - ".github/workflows"
   pull_request:
   workflow_dispatch:
 
