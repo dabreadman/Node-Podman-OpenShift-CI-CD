@@ -1,5 +1,5 @@
 <template lang="html">
-  <v-card style="background: red;">
+  <v-card style="background: #4da6ff;">
     <v-row>
       <v-col align="center">
         <h3 style="color:white;" class="display-1 py-6"><b>Active Cases in Ireland</b></h3>
