@@ -1,5 +1,5 @@
 # Install dev dependencies stage
-FROM node:15-alpine as application_modules
+FROM node:12-alpine as application_modules
 
 WORKDIR /usr/src/app
 
