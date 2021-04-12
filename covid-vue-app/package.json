@@ -7,7 +7,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "test": "jest --coverage --watchAll=false || exit 0"
+    "test": "jest --coverage"
   },
   "jest": {
     "testMatch": [
