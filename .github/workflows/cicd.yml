@@ -88,7 +88,7 @@ jobs:
           echo "TAG=$(jq -r .version package.json)" | tee -a $GITHUB_ENV
 
       - name: Podman Layer Caching
-        uses: dabreadman/action-docker-layer-caching@v0.0.11.b.t.2
+        uses: dabreadman/action-docker-layer-caching@vb.t.1
 
       - name: Build image, run lint/test
         run: docker build . --file Dockerfile --build-arg VUE_APP_COVIDAPIKEY=${{ env.VUE_APP_COVIDAPIKEY }} --build-arg VUE_APP_POPULATIONAPIKEY=${{ env.VUE_APP_POPULATIONAPIKEY }} --tag ${{ env.REGISTRY }}/${{ env.REGISTRY_USERNAME }}/${{ env.APP_NAME }}:${{ env.TAG }}
