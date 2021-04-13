@@ -91,11 +91,9 @@ jobs:
         uses: dabreadman/action-docker-layer-caching@vb.t.1
         with:
           container: "podman"
-          key: $(jq -r .version package.json)
-          restore-keys: $(jq -r .version package.json)
 
       - name: Build image, run lint/test
-        run: docker build . --file Dockerfile --build-arg VUE_APP_COVIDAPIKEY=${{ env.VUE_APP_COVIDAPIKEY }} --build-arg VUE_APP_POPULATIONAPIKEY=${{ env.VUE_APP_POPULATIONAPIKEY }} --tag ${{ env.REGISTRY }}/${{ env.REGISTRY_USERNAME }}/${{ env.APP_NAME }}:${{ env.TAG }}
+        run: pod build . --file Dockerfile --build-arg VUE_APP_COVIDAPIKEY=${{ env.VUE_APP_COVIDAPIKEY }} --build-arg VUE_APP_POPULATIONAPIKEY=${{ env.VUE_APP_POPULATIONAPIKEY }} --tag ${{ env.REGISTRY }}/${{ env.REGISTRY_USERNAME }}/${{ env.APP_NAME }}:${{ env.TAG }}
 
       - name: Registry Autherisation
         run: podman login -u ${{ env.REGISTRY_USERNAME }} -p ${{ env.REGISTRY_PASSWORD }} quay.io
