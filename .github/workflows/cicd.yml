@@ -1,7 +1,8 @@
-name: CI/CD
+name: CI/CD Podman Fresh
 
 env:
   # Using Quay.io
+  CONTAINER: podman
   REGISTRY: quay.io
   REGISTRY_USERNAME: dabreadman
   REGISTRY_PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
@@ -87,30 +88,14 @@ jobs:
         run: |
           echo "TAG=$(jq -r .version package.json)" | tee -a $GITHUB_ENV
 
-      - name: Docker Layer Caching
-        uses: satackey/action-docker-layer-caching@v0.0.11
+      - name: Podman Layer Caching
+        uses: dabreadman/action-docker-layer-caching@vb.t.1
+        with:
+          container: ${{ env.CONTAINER }}
+          key: "test"
 
       - name: Build image, run lint/test
-        run: podman build . --file Dockerfile --build-arg VUE_APP_COVIDAPIKEY=${{ env.VUE_APP_COVIDAPIKEY }} --build-arg VUE_APP_POPULATIONAPIKEY=${{ env.VUE_APP_POPULATIONAPIKEY }} --tag ${{ env.REGISTRY }}/${{ env.REGISTRY_USERNAME }}/${{ env.APP_NAME }}:${{ env.TAG }}
+        run: ${{ env.CONTAINER }} build . --file Dockerfile --build-arg VUE_APP_COVIDAPIKEY=${{ env.VUE_APP_COVIDAPIKEY }} --build-arg VUE_APP_POPULATIONAPIKEY=${{ env.VUE_APP_POPULATIONAPIKEY }} --tag ${{ env.REGISTRY }}/${{ env.REGISTRY_USERNAME }}/${{ env.APP_NAME }}:${{ env.TAG }}
 
-      - name: Registry Autherisation
-        run: podman login -u ${{ env.REGISTRY_USERNAME }} -p ${{ env.REGISTRY_PASSWORD }} quay.io
-      - name: Push to registry
-        run: podman push ${{ env.REGISTRY }}/${{ env.REGISTRY_USERNAME }}/${{ env.APP_NAME }}:${{ env.TAG }}
 
-      - name: Log in to OpenShift
-        uses: redhat-actions/oc-login@v1
-        with:
-          openshift_server_url: ${{ env.OPENSHIFT_SERVER }}
-          openshift_token: ${{ env.OPENSHIFT_TOKEN }}
-          insecure_skip_tls_verify: true
-          namespace: ${{ env.OPENSHIFT_NAMESPACE }}
 
-      - name: Create and expose app
-        id: deploy-and-expose
-        uses: redhat-actions/oc-new-app@v1
-        with:
-          app_name: ${{ env.APP_NAME }}
-          image: ${{ env.REGISTRY }}/${{ env.REGISTRY_USERNAME }}/${{ env.APP_NAME }}:${{ env.TAG }}
-          namespace: ${{ env.OPENSHIFT_NAMESPACE }}
-          port: ${{ env.APP_PORT }}
