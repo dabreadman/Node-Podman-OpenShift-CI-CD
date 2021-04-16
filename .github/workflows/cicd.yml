@@ -1,17 +1,6 @@
 name: CI/CD
 
 env:
-  # Using Quay.io
-  REGISTRY: quay.io
-  REGISTRY_USERNAME: dabreadman
-  REGISTRY_PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
-
-  # OpenShift Token
-  OPENSHIFT_SERVER: ${{ secrets.OPENSHIFT_SERVER }}
-  OPENSHIFT_TOKEN: ${{ secrets.OPENSHIFT_TOKEN }}
-  APP_PORT: 8080
-  OPENSHIFT_NAMESPACE: ${{ secrets.OPENSHIFT_NAMESPACE }}
-
   APP_NAME: "covid-app"
   TAG: ""
 
@@ -38,43 +27,7 @@ jobs:
         working-directory: ./covid-vue-app
     environment: development
 
-    outputs:
-      image: ${{ steps.image.outputs.image }}
-
     steps:
-      - name: Check if secrets exists
-        uses: actions/github-script@v3
-        with:
-          script: |
-            const secrets = {
-              REGISTRY_PASSWORD: `${{ env.REGISTRY_PASSWORD }}`,
-              OPENSHIFT_SERVER: `${{ env.OPENSHIFT_SERVER }}`,
-              OPENSHIFT_TOKEN: `${{ env.OPENSHIFT_TOKEN }}`,
-              VUE_APP_COVIDAPIKEY: `${{ env.VUE_APP_COVIDAPIKEY }}`,
-              VUE_APP_POPULATIONAPIKEY: `${{ env.VUE_APP_POPULATIONAPIKEY }}`
-            };
-
-            const missingSecrets = Object.entries(secrets).filter(([ name, value ]) => {
-              if (value.length === 0) {
-                core.warning(`Secret "${name}" is not set`);
-                return true;
-              }
-              core.info(`✔️ Secret "${name}" is set`);
-              return false;
-
-            });
-
-            if (missingSecrets.length > 0) {
-              core.setFailed(`❌ At least one required secret is not set in the repository. \n` +
-                "You can add it using:\n" +
-                "GitHub UI: https://docs.github.com/en/actions/reference/encrypted-secrets#creating-encrypted-secrets-for-a-repository \n" +
-                "GitHub CLI: https://cli.github.com/manual/gh_secret_set \n" +
-                "Also, refer to https://github.com/redhat-actions/oc-login#getting-started-with-the-action-or-see-example");
-            }
-            else {
-              core.info(`✅ All the required secrets are set`);
-            }
-
       - uses: actions/checkout@v2
 
       - name: Determine app name
@@ -97,20 +50,3 @@ jobs:
         run: podman login -u ${{ env.REGISTRY_USERNAME }} -p ${{ env.REGISTRY_PASSWORD }} quay.io
       - name: Push to registry
         run: podman push ${{ env.REGISTRY }}/${{ env.REGISTRY_USERNAME }}/${{ env.APP_NAME }}:${{ env.TAG }}
-
-      - name: Log in to OpenShift
-        uses: redhat-actions/oc-login@v1
-        with:
-          openshift_server_url: ${{ env.OPENSHIFT_SERVER }}
-          openshift_token: ${{ env.OPENSHIFT_TOKEN }}
-          insecure_skip_tls_verify: true
-          namespace: ${{ env.OPENSHIFT_NAMESPACE }}
-
-      - name: Create and expose app
-        id: deploy-and-expose
-        uses: redhat-actions/oc-new-app@v1
-        with:
-          app_name: ${{ env.APP_NAME }}
-          image: ${{ env.REGISTRY }}/${{ env.REGISTRY_USERNAME }}/${{ env.APP_NAME }}:${{ env.TAG }}
-          namespace: ${{ env.OPENSHIFT_NAMESPACE }}
-          port: ${{ env.APP_PORT }}
