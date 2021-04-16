@@ -2,7 +2,7 @@ name: CI/CD
 
 env:
   # Using Quay.io
-  CONTAINER: podman
+  CONTAINER: docker
   REGISTRY: quay.io
   REGISTRY_USERNAME: dabreadman
   REGISTRY_PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
