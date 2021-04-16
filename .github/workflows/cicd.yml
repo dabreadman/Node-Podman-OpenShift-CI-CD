@@ -1,6 +1,8 @@
 name: CI/CD
 
 env:
+  REGISTRY: quay.io
+  REGISTRY_USERNAME: dabreadman
   APP_NAME: "covid-app"
   TAG: ""
 
