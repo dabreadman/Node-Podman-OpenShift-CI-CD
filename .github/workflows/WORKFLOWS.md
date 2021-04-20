@@ -117,19 +117,12 @@ Then, we start with the steps, most of which are from the template mentioned abo
             echo "TAG=$(jq -r .version package.json)" | tee -a $GITHUB_ENV
     ```
 
-1. We try to retrieve cached docker layers
-
-    ```yaml
-        - name: Docker Layer Caching
-          uses: satackey/action-docker-layer-caching@v0.0.11
-    ```
-
 1. We build image, run tests (we moved all tests inside docker image), and push to image registry.
 
     ```yaml
         - name: Build image, run lint/test
-          run: podman build . --file Dockerfile --tag ${{ env.REGISTRY }}/${{ env.REGISTRY_USERNAME }}/${{ env.APP_NAME }}:${{ env.TAG }}
-
+          run: podman build . --file ./docker/Dockerfile --build-arg VUE_APP_COVIDAPIKEY=${{ env.VUE_APP_COVIDAPIKEY }} --build-arg VUE_APP_POPULATIONAPIKEY=${{ env.VUE_APP_POPULATIONAPIKEY }} --build-arg APP_PORT=${{ env.APP_PORT }} --tag ${{ env.REGISTRY }}/${{ env.REGISTRY_USERNAME }}/${{ env.APP_NAME }}:${{ env.TAG }}
+          
         - name: Registry Autherisation
           run: podman login -u ${{ env.REGISTRY_USERNAME }} -p ${{ env.REGISTRY_PASSWORD }} quay.io
         

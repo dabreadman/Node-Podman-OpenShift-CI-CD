@@ -1,11 +1,11 @@
 # covid-vue-app
 
-## Prerequisite
+## Develop in a Containerised Environment
+
+### Prerequisite
 
 - [`docker`](https://docs.docker.com/get-docker/)
 - [`docker-compose`](https://docs.docker.com/compose/install/)
-
-## Develop in a Containerised Environment
 
 This serves a hot reload server serving Vue application in a image, accessible at `localhost:8080`
 
@@ -13,8 +13,14 @@ This serves a hot reload server serving Vue application in a image, accessible a
 docker-compose up
 ```
 
+Read more on containerisation in `CONTAINER.md` in [`.\docker`](https://github.com/dabreadman/Node-Podman-OpenShift-CI-CD/tree/main/covid-vue-app/docker).
+
 ## Development on Local Environment
 
+### Prerequisite
+
+- [`Node.js`](https://nodejs.org/en/)
+  
 ### Project setup
 
 ```shell
@@ -38,7 +44,3 @@ npm run build
 ```shell
 npm run lint
 ```
-
-#### Customize configuration
-
-See [Configuration Reference](https://cli.vuejs.org/config/).
