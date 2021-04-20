@@ -14,7 +14,9 @@ This project is of a two-part project.
 
 - **Pipeline**
 - **Application**  
-  For application related documentation, refer to the `README.MD` in [`covid-vue-app`](https://github.com/dabreadman/Node-Podman-OpenShift-CI-CD/tree/main/covid-vue-app)
+  For application related documentation, refer to the `DEVELOP.MD` in [`.\covid-vue-app`](https://github.com/dabreadman/Node-Podman-OpenShift-CI-CD/tree/main/covid-vue-app)
+
+  Read more on containerisation in `CONTAINER.md` in [`.\docker`](https://github.com/dabreadman/Node-Podman-OpenShift-CI-CD/tree/main/covid-vue-app/docker).
 
 ### Pipeline
 
@@ -137,37 +139,29 @@ If there were any errors from these steps, the pipeline will fail and the develo
 
 ## Resources
 
-[Git](https://git-scm.com/book/en/v2)
+- [Git](https://git-scm.com/book/en/v2)
+- [Docker Docs](https://docs.docker.com/)
+- [Kubernetes Docs](https://www.docker.com/products/kubernetes)
 
-[Docker Docs](https://docs.docker.com/)
+### Containerisation
 
-[Kubernetes Docs](https://www.docker.com/products/kubernetes)
-
-## Possible Solutions
-
-### Containers
-
-- **Podman**
+- **[Podman](https://podman.io/)**
 
 ### Container Orchestration
 
-- **OpenShift**
+- **[OpenShift](https://www.openshift.com/)**
 
 ### Monitoring
 
-- **PagerDuty**
-- Graphite
-- AppDynamics
+- **[PagerDuty](https://www.pagerduty.com/)**
 
 ### Continuous Integration
 
-- **Github Actions**
+- **[Github Actions](https://docs.github.com/en/actions)**
 
 ### Web servers
 
-- **Nginx**
-- Apache
-- Caddy
+- **[Nginx](https://www.nginx.com/)**
 
 ### Pipeline Template
 
