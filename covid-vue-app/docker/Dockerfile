@@ -57,4 +57,6 @@ COPY ./server/container-package.json ./package.json
 
 EXPOSE ${APP_PORT}
 
+USER node
+
 CMD ["npm", "start"]

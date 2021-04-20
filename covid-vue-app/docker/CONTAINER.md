@@ -150,6 +150,8 @@ COPY ./server/container-package.json ./package.json
 
 EXPOSE ${APP_PORT}
 
+USER node
+
 CMD ["npm", "start"]
 ```
 
@@ -162,6 +164,9 @@ In our final layer, which is also what the final image/container will be, we are
 
 We `EXPOSE ${APP_PORT}`, allowing connection to the image via the declared port.  
 `EXPOSE <port>`
+
+Note that we also set `USER node`, to attain user privileges for security reasons (wouldn't want escaped client to have administrator privileges).  
+`node` is a built-in user for node images.  
 
 And finally, `CMD ["npm", "start"]`.  
 This is equivalent to `npm start` in CLI.  
