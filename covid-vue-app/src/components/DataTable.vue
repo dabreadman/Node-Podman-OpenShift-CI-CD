@@ -1,5 +1,8 @@
+<!-- This Vue component will act as a data table to show general COVID-19 Information for many different countries. -->
+<!-- This Vue component was developed with the help of Vuetify, and allows the user to digest general COVID-19 information with a table. -->
 <template lang="html">
   <v-container fluid>
+    <!-- We want to iterate through all the data -->
     <v-data-iterator
       :items="items"
       :items-per-page.sync="itemsPerPage"
@@ -32,6 +35,7 @@
               label="Sort by"
             ></v-select>
             <v-spacer></v-spacer>
+            <!-- We want the user to be able to toggle between the countries to view different information. -->
             <v-btn-toggle v-model="sortDesc" mandatory>
               <v-btn large depressed color="blue" :value="false">
                 <v-icon>mdi-arrow-up</v-icon>
@@ -43,7 +47,6 @@
           </template>
         </v-toolbar>
       </template>
-
       <template v-slot:default="props">
         <v-row>
           <v-col
@@ -58,9 +61,7 @@
               <v-card-title class="subheading font-weight-bold">
                 {{ item.name }}
               </v-card-title>
-
               <v-divider></v-divider>
-
               <v-list dense>
                 <v-list-item v-for="(key, index) in filteredKeys" :key="index">
                   <v-list-item-content
@@ -80,7 +81,6 @@
           </v-col>
         </v-row>
       </template>
-
       <template v-slot:footer>
         <v-row class="mt-2" align="center" justify="center">
           <span class="grey--text">Items per page</span>
@@ -108,9 +108,7 @@
               </v-list-item>
             </v-list>
           </v-menu>
-
           <v-spacer></v-spacer>
-
           <span class="mr-4 grey--text">
             Page {{ page }} of {{ numberOfPages }}
           </span>
@@ -135,6 +133,7 @@
 <script>
 import axios from "axios";
 export default {
+  //We can make most of the data null before the API calls.
   data() {
     return {
       itemsPerPageArray: [4, 8, 12],
@@ -218,6 +217,7 @@ export default {
     },
   },
   methods: {
+    //Here we can have a dedicated function for each country's API call.
     getDataforUSA() {
       this.items[0].deaths = "Loading...";
       this.items[0].recovered = "Loading...";

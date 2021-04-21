@@ -1,6 +1,7 @@
 import TheHomePage from "./pages/TheHomePage.vue";
 import StatsPage from "./pages/StatsPage.vue";
 
+//Set the routes for the pages in the application.
 export const routes = [
   {
     path: "/",

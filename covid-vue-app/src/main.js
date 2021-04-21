@@ -5,6 +5,7 @@ import VueRouter from "vue-router";
 
 Vue.config.productionTip = false;
 
+//We want to use VueRouter to set up the routes.
 import { routes } from "./routes";
 Vue.use(VueRouter);
 const router = new VueRouter({
@@ -12,6 +13,7 @@ const router = new VueRouter({
   routes,
 });
 
+//Mount the application.
 new Vue({
   vuetify,
   router,

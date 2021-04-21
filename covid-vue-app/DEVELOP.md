@@ -1,5 +1,7 @@
 # covid-vue-app
 
+This application tracks COVID-19 cases across the world. It uses information from a [COVID-19 API](https://rapidapi.com/KishCom/api/covid-19-coronavirus-statistics) and a [Population API](https://rapidapi.com/aldair.sr99/api/world-population) and shows vital information about the virus with the help of bar charts, pie charts, and real time statistics.
+
 ## Develop in a Containerised Environment
 
 ### Prerequisite
@@ -26,6 +28,12 @@ Read more on containerisation in `CONTAINER.md` in [`.\docker`](https://github.c
 ```shell
 npm install
 ```
+
+### Set up API Keys
+Make a file called `.env` and `.env.production` inside the `covid-vue-app` directory. Get the two API keys needed for this application from the [COVID-19 API](https://rapidapi.com/KishCom/api/covid-19-coronavirus-statistics) and from the [Population API](https://rapidapi.com/aldair.sr99/api/world-population) (They are both free!). Then, put this in both `.env` files:
+
+1. `VUE_APP_COVIDAPIKEY = 'ENTER_YOUR_API_KEY_HERE'` 
+2. `VUE_APP_POPULATIONAPIKEY = 'ENTER_YOUR_API_KEY_HERE'`
 
 ### Compiles and hot-reloads for development
 
