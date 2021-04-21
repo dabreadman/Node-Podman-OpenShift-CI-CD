@@ -31,8 +31,11 @@ npm install
 
 ### Set up API Keys
 1. Make a file called `.env` and `.env.production` inside the `covid-vue-app` directory. Get the two API keys needed for this application from the [COVID-19 API](https://rapidapi.com/KishCom/api/covid-19-coronavirus-statistics) and from the [Population API](https://world-population.p.rapidapi.com/population) (They are both free!). Then, put this in both `.env` files:
+
 `VUE_APP_COVIDAPIKEY = 'ENTER_YOUR_API_KEY_HERE'` 
+
 `VUE_APP_POPULATIONAPIKEY = 'ENTER_YOUR_API_KEY_HERE'`
+
 The API keys will now be set.
 
 ### Compiles and hot-reloads for development
