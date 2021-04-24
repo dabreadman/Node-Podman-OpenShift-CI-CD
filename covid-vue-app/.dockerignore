@@ -1,4 +1,4 @@
 node_modules
-demo
-docs
+**/demo
+**/docs
 
