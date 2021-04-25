@@ -41,7 +41,7 @@
     "selenium-webdriver": "^3.6.0",
     "vue": "^2.6.10",
     "vue-router": "^3.5.1",
-    "vuetify": "^2.4.9"
+    "vuetify": "^2.4.11"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.13.15",
