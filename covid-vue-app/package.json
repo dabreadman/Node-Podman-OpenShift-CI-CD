@@ -37,7 +37,7 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
-    "core-js": "^3.10.1",
+    "core-js": "^3.10.2",
     "selenium-webdriver": "^3.6.0",
     "vue": "^2.6.10",
     "vue-router": "^3.5.1",
