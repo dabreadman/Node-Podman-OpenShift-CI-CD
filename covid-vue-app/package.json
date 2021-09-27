@@ -36,7 +36,7 @@
     }
   },
   "dependencies": {
-    "axios": "^0.21.3",
+    "axios": "^0.21.4",
     "core-js": "^3.17.3",
     "selenium-webdriver": "^3.6.0",
     "vue": "^2.6.10",
